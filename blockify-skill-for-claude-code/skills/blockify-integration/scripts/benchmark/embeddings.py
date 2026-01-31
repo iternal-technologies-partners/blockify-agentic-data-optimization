@@ -218,6 +218,9 @@ def extract_queries_from_blocks(blocks: List[Dict[str, Any]]) -> List[str]:
 def extract_unique_chunks(blocks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Extract unique source chunks from block metadata.
 
+    NOTE: This returns deduplicated chunks by hash. For raw chunk counts
+    from source files, use chunk_source_files() instead.
+
     Args:
         blocks: List of IdeaBlock dicts with source_chunk_* metadata
 
@@ -246,3 +249,74 @@ def extract_unique_chunks(blocks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     # Sort by index
     chunks.sort(key=lambda c: c.get('index', 0))
     return chunks
+
+
+def chunk_source_files(
+    source_dir: str,
+    chunk_size: int = 2000,
+    overlap: int = 200
+) -> List[Dict[str, Any]]:
+    """Chunk all source files in a directory without deduplication.
+
+    This provides the true baseline for traditional RAG comparison -
+    all chunks from all files, including duplicates.
+
+    Args:
+        source_dir: Path to directory containing source files
+        chunk_size: Maximum chunk size in characters
+        overlap: Overlap between chunks in characters
+
+    Returns:
+        List of chunk dicts with 'text', 'index', 'source_file' keys
+    """
+    from pathlib import Path
+
+    def _chunk_text(text: str) -> List[str]:
+        """Split text into overlapping chunks."""
+        sentences = text.replace('\n', ' ').split('. ')
+        chunks = []
+        current = []
+        length = 0
+
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+            sentence += '. '
+
+            if length + len(sentence) > chunk_size and current:
+                chunks.append(''.join(current))
+                overlap_text = ''.join(current)[-overlap:]
+                current = [overlap_text, sentence]
+                length = len(overlap_text) + len(sentence)
+            else:
+                current.append(sentence)
+                length += len(sentence)
+
+        if current:
+            chunks.append(''.join(current))
+
+        return chunks
+
+    all_chunks = []
+    source_path = Path(source_dir)
+
+    # Find all text files
+    files = list(source_path.glob('**/*.md')) + list(source_path.glob('**/*.txt'))
+
+    for filepath in files:
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                text = f.read()
+
+            file_chunks = _chunk_text(text)
+            for i, chunk_text in enumerate(file_chunks):
+                all_chunks.append({
+                    'text': chunk_text,
+                    'index': len(all_chunks),
+                    'source_file': filepath.name,
+                })
+        except Exception as e:
+            print(f"  Warning: Could not read {filepath}: {e}")
+
+    return all_chunks

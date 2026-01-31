@@ -119,6 +119,12 @@ For more information, see BENCHMARK-GUIDE.md
         action='store_true',
         help='Create default config file and exit'
     )
+    parser.add_argument(
+        '--source-dir',
+        type=str,
+        default=None,
+        help='Path to source documents directory for raw chunk calculation (recommended for accurate baseline)'
+    )
 
     args = parser.parse_args()
 
@@ -149,7 +155,11 @@ For more information, see BENCHMARK-GUIDE.md
 
     # Run benchmark
     try:
-        runner = BenchmarkRunner(config_path=args.config, overrides=overrides)
+        runner = BenchmarkRunner(
+            config_path=args.config,
+            overrides=overrides,
+            source_dir=args.source_dir
+        )
 
         # Apply output override if specified
         if args.output:

@@ -34,6 +34,7 @@ from .embeddings import (
     calculate_query_distances,
     extract_queries_from_blocks,
     extract_unique_chunks,
+    chunk_source_files,
 )
 from .charts import (
     generate_accuracy_chart,
@@ -50,18 +51,20 @@ TEMPLATE_DIR = Path(__file__).parent / 'templates'
 class BenchmarkRunner:
     """Main benchmark execution class."""
 
-    def __init__(self, config_path: Optional[str] = None, overrides: Optional[Dict] = None):
+    def __init__(self, config_path: Optional[str] = None, overrides: Optional[Dict] = None, source_dir: Optional[str] = None):
         """Initialize benchmark runner.
 
         Args:
             config_path: Path to YAML config file
             overrides: Optional dict of config overrides
+            source_dir: Path to source documents directory for raw chunk calculation
         """
         self.config = load_config(config_path, overrides)
         self.results: Dict[str, Any] = {}
         self.chroma_client = None
         self.raw_collection = None
         self.distilled_collection = None
+        self.source_dir = source_dir
 
     def _connect_chromadb(self):
         """Connect to ChromaDB."""
@@ -141,13 +144,23 @@ class BenchmarkRunner:
         undistilled_blocks = self._load_blocks(self.raw_collection)
         distilled_blocks = self._load_blocks(self.distilled_collection) if self.distilled_collection else []
 
-        # Check for source chunks
-        chunks = extract_unique_chunks(undistilled_blocks)
-        has_chunks = len(chunks) > 0
+        # Get chunks - prefer raw chunks from source files if source_dir provided
+        if self.source_dir:
+            print(f"  Loading raw chunks from source files: {self.source_dir}")
+            chunks = chunk_source_files(self.source_dir)
+            has_chunks = len(chunks) > 0
+            if has_chunks:
+                print(f"  Loaded {len(chunks)} raw chunks from source files (no deduplication)")
+        else:
+            # Fall back to extracting unique chunks from block metadata
+            chunks = extract_unique_chunks(undistilled_blocks)
+            has_chunks = len(chunks) > 0
+            if has_chunks:
+                print(f"  Extracted {len(chunks)} unique chunks from block metadata")
 
         if not has_chunks:
-            print("  WARNING: No source_chunk_text found in block metadata.")
-            print("  Chunk comparison will be skipped. Re-ingest documents to enable full benchmark.")
+            print("  WARNING: No source chunks found.")
+            print("  Chunk comparison will be skipped. Provide --source-dir or re-ingest documents.")
 
         print(f"  Undistilled blocks: {len(undistilled_blocks)}")
         print(f"  Distilled blocks: {len(distilled_blocks)}")
