@@ -1,6 +1,23 @@
 <div class="section">
-    <h3 class="section-title">Terminology and Definitions</h3>
+    <h3 class="section-title">7. Terminology</h3>
+    <p>In this document we will use the following definitions of terms:</p>
 
+    <div class="summary-card">
+        <div class="summary-title">Legacy RAG</div>
+        <p>Legacy retrieval augmented generation, which uses the industry established process of uploading documents to a text extraction solution, the text is parsed linearly, the text is chunked into segments with a specific equal length (for example 2,000 characters per chunk). The chunks are truncated based on common punctuation that ends sentences such as (".","!","?"). The text chunks have a character overlap between each chunk to ensure important context between chunks is not lost.</p>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-title">Blockify<sup>&reg;</sup></div>
+        <p>Blockify is the patented solution from Iternal Technologies that includes a data ingestion pipeline of the following steps: Uploading documents to a text extraction solution, the text is parsed linearly, the text is chunked into segments with a specific equal length (for example 2,000 characters per chunk). The chunks are truncated based on common punctuation that ends sentences such as (".","!","?"). The text chunks have a character overlap between each chunk to ensure important context between chunks is not lost. The chunks are processed by a specially developed LLM that is designed to extract the IdeaBlocks from the source chunks. The IdeaBlocks are distilled and deduplicated via another series of LLMs and clustering similarity algorithms, the process is repeated a number of times for optimal dataset distillation. The IdeaBlocks are made available for optional human review.</p>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-title">IdeaBlocks</div>
+        <p>An IdeaBlock is any self-contained concept or idea about a topic, for example your company, products, services, etc. An IdeaBlock is typically 2 - 3 sentences in length. It contains a Name, a Critical Question, a Trusted Answer, an Index, Tags, Keywords, and other metadata</p>
+    </div>
+
+    <h4 style="margin-top: 30px;">Additional Terms</h4>
     <table>
         <thead>
             <tr>
@@ -9,10 +26,6 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><strong>IdeaBlock</strong></td>
-                <td>A self-contained unit of knowledge extracted by Blockify<sup>&reg;</sup>, consisting of a name, critical question, and trusted answer. Each IdeaBlock answers exactly one question completely.</td>
-            </tr>
             <tr>
                 <td><strong>RAG (Retrieval-Augmented Generation)</strong></td>
                 <td>An AI architecture that combines information retrieval with language generation, using a knowledge base to provide context for LLM responses.</td>

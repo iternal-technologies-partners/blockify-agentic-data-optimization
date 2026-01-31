@@ -1,10 +1,7 @@
 <div class="section">
-    <h3 class="section-title">Word Frequency Analysis</h3>
-
-    <p>
-        The following chart compares word frequency between the original document content and
-        the distilled IdeaBlocks. Notice how Blockify<sup>&reg;</sup> reduces repetition while
-        preserving key terminology.
+    <h3 class="section-title">Word Frequency Improvement for Top 10 Most Common Words in {{ company_name }} Documents</h3>
+    <p style="font-size: 0.9em; color: var(--text-secondary);">
+        The frequency of words represents the repetition of the same information across documents. The goal is to reduce the frequency of words to reduce the number of times the same information must be updated whenever it changes. Smaller word counts means easier to update data and a reduction in the chance of errors.
     </p>
 
     <div class="chart-container">
@@ -16,27 +13,37 @@
     <table>
         <thead>
             <tr>
-                <th>Word</th>
-                <th>Original Frequency</th>
-                <th>Distilled Frequency</th>
-                <th>Reduction</th>
+                <th>Name</th>
+                <th>Raw Document Input</th>
+                <th>Blockify<sup>&reg;</sup> Output - Undistilled</th>
+                <th>Blockify<sup>&reg;</sup> Output - Distilled</th>
+                <th>Improvement Factor (Raw to Distilled)</th>
             </tr>
         </thead>
         <tbody>
             {% for word, count in word_frequencies.document[:10] %}
+            {% set undistilled_count = 0 %}
             {% set distilled_count = 0 %}
+            {% for uword, ucount in word_frequencies.undistilled %}
+                {% if uword == word %}
+                    {% set undistilled_count = ucount %}
+                {% endif %}
+            {% endfor %}
             {% for dword, dcount in word_frequencies.distilled %}
                 {% if dword == word %}
                     {% set distilled_count = dcount %}
                 {% endif %}
             {% endfor %}
             <tr>
-                <td>{{ word }}</td>
+                <td>Use of Word "{{ word }}" in Text</td>
                 <td>{{ count|format_number }}</td>
+                <td>{{ undistilled_count|format_number }}</td>
                 <td>{{ distilled_count|format_number }}</td>
                 <td class="improvement-positive">
-                    {% if count > 0 %}
-                    {{ ((count - distilled_count) / count * 100)|format_decimal(1) }}%
+                    {% if count > 0 and distilled_count > 0 %}
+                    {{ (count / distilled_count)|format_decimal(2) }}X
+                    {% elif count > 0 %}
+                    -
                     {% else %}
                     -
                     {% endif %}
@@ -47,7 +54,6 @@
     </table>
 
     <p class="note">
-        Word frequency reduction indicates how effectively Blockify<sup>&reg;</sup> eliminates
-        redundant content while preserving essential information.
+        Note: Some words may appear as 0 in the table because the LLM has rewritten them. For example "genai" may be rewritten as "Gen AI" in the output dataset.
     </p>
 </div>

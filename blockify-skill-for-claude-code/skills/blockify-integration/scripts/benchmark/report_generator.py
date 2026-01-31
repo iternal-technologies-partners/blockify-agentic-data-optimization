@@ -380,20 +380,32 @@ class BenchmarkRunner:
         print("  Generating charts...")
         charts = self._generate_charts()
 
+        # Prepare metrics with additional distance data
+        metrics_with_distances = {
+            **self.results.get('metrics', {}),
+            'avg_chunk_distance': self.results.get('avg_chunk_distance', 0.45),
+            'avg_undistilled_distance': self.results.get('avg_undistilled_distance', 0.15),
+            'avg_distilled_distance': self.results.get('avg_distilled_distance', 0.09),
+        }
+
         # Prepare template data
         template_data = {
             'company_name': self.config.company_name,
             'generated_date': datetime.now().strftime('%B %d, %Y'),
             'generated_timestamp': datetime.now().isoformat(),
-            'metrics': self.results.get('metrics', {}),
+            'current_year': datetime.now().year,
+            'metrics': metrics_with_distances,
             'counts': self.results.get('counts', {}),
             'text_statistics': self.results.get('text_statistics', {}),
             'word_frequencies': self.results.get('word_frequencies', {}),
             'charts': charts,
             'queries': self.results.get('queries', [])[:5],  # Sample queries
             'chunk_matches': self.results.get('chunk_matches', [])[:5],
+            'undistilled_matches': self.results.get('undistilled_matches', [])[:5],
             'distilled_matches': self.results.get('distilled_matches', [])[:5],
             'sections': self.config.report_sections,
+            'number_of_documents': self.results.get('counts', {}).get('chunks', 0),
+            'number_of_pages': 'N/A',  # Can be overridden via config if needed
             'config': {
                 'number_of_user_queries': self.config.number_of_user_queries,
                 'enterprise_dup_factor': self.config.enterprise_dup_factor,

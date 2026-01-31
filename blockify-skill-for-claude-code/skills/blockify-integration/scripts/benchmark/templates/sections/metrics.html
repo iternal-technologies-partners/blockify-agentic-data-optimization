@@ -8,7 +8,7 @@
         </div>
         <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
             <div class="metric-title">Blockify<sup>&reg;</sup> Total<br>Enterprise Performance</div>
-            <div class="metric-value highlight">{{ metrics.enterprise_performance|format_decimal(2) }}X</div>
+            <div class="metric-value" style="font-size: 40px; color: rgb(20, 139, 13);">{{ metrics.enterprise_performance|format_decimal(2) }}X</div>
         </div>
         <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
             <div class="metric-title">Blockify<sup>&reg;</sup> Information Distillation<br>Enterprise Performance</div>
@@ -16,40 +16,45 @@
         </div>
     </div>
 
-    <div class="key-metrics">
+    <div class="key-metrics" style="margin-top: 20px;">
         <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
             <div class="metric-title">Token Efficiency<br>Improvement Factor</div>
             <div class="metric-value">{{ metrics.token_improvement|format_decimal(2) }}X</div>
         </div>
         <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
-            <div class="metric-title">Cost Savings from Token Efficiency<br>({{ config.number_of_user_queries|format_number }} queries/year)</div>
-            <div class="metric-value highlight">{{ metrics.cost_savings_per_year|format_currency }}</div>
+            <div class="metric-title">Cost Savings from Token Efficiency of<br>{{ config.number_of_user_queries|format_number }} queries per year</div>
+            <div class="metric-value" style="color: rgb(20, 139, 13);">{{ metrics.cost_savings_per_year|format_currency }}</div>
         </div>
     </div>
 
     <div class="executive-summary">
         <p>
-            For this technical analysis we compare the performance of Blockify<sup>&reg;</sup> to the legacy RAG process:
+            For this technical analysis we will use the following technologies to compare the performance of Blockify<sup>&reg;</sup> to the legacy RAG process:
         </p>
 
         <table>
             <thead>
                 <tr>
                     <th>Technology Component</th>
-                    <th>Traditional Chunking</th>
+                    <th>Naive Chunking</th>
                     <th>Blockify<sup>&reg;</sup></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Dataset</td>
-                    <td>{{ company_name }} Documents</td>
-                    <td>{{ company_name }} Documents</td>
+                    <td>{{ company_name }} Documents: {{ number_of_documents|default(counts.chunks) }} (Totaling {{ number_of_pages|default('N/A') }} Pages)</td>
+                    <td>{{ company_name }} Documents: {{ number_of_documents|default(counts.chunks) }} (Totaling {{ number_of_pages|default('N/A') }} Pages)</td>
+                </tr>
+                <tr>
+                    <td>Document Parsing</td>
+                    <td>Unstructured.io</td>
+                    <td>Generic Parsing (Interchangeable - supports Unstructured.io, AWS Textract, etc.)</td>
                 </tr>
                 <tr>
                     <td>Chunking Method</td>
-                    <td>~2,000 Character Chunks with 200 Character Overlap</td>
-                    <td>Blockify<sup>&reg;</sup> IdeaBlocks (semantic chunking)</td>
+                    <td>~2,000 Character Chunks (with 200 Character Overlap)</td>
+                    <td>~2,000 Character Chunks - Blockify<sup>&reg;</sup> Basic Character Chunking truncated by sentence punctuation (".","!","?")</td>
                 </tr>
                 <tr>
                     <td>Vector Embeddings</td>
@@ -63,5 +68,8 @@
                 </tr>
             </tbody>
         </table>
+        <p>
+            Note: We encourage customers to select a high quality document parser to feed into Blockify<sup>&reg;</sup> (such as Unstructured.io or Google Gemini). While most document parsing are great at parsing documents, solutions like Unstructured.io and Azure AI Search still use basic chunking methods after parsing. Blockify solves this weakness and further enhances the quality of the data fed into the LLM in conjunction with the Parsing tools.
+        </p>
     </div>
 </div>

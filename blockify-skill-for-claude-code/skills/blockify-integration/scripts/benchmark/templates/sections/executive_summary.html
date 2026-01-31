@@ -1,35 +1,20 @@
 <div class="section">
-    <h3 class="section-title">Executive Summary</h3>
+    <h3 class="section-title">1. Executive Summary</h3>
+    <div class="summary-card">
+        <p>Blockify is a data optimization tool that takes messy, unstructured text, like hundreds of sales-meeting transcripts or long proposals, and intelligently optimizes the data into small, easy-to-understand "IdeaBlocks." Each IdeaBlock is just a couple of sentences in length that capture one clear idea, plus a built-in contextualized question and answer.</p>
 
-    <p>
-        Blockify<sup>&reg;</sup> is a patented knowledge distillation platform that transforms unstructured
-        documents into semantically complete, self-contained units of knowledge called <strong>IdeaBlocks</strong>.
-        Unlike traditional chunking methods that arbitrarily split text by character or token count, IdeaBlocks
-        preserve the semantic integrity of information, ensuring that each unit answers exactly one question
-        completely.
-    </p>
+        <p>With this approach, Blockify improves accuracy of LLMs (Large Language Models) by an average aggregate 78X, while shrinking the original mountain of text to about 2.5% of its size while keeping (and even improving) the important information.</p>
 
-    <h4>The Blockify<sup>&reg;</sup> Process</h4>
+        <p>When Blockify's IdeaBlocks are compared with the usual method of breaking text into equal-sized chunks, the results are dramatic. Answers pulled from the distilled IdeaBlocks are roughly 40X more accurate, and user searches return the right information about 52% more accurate. In short, Blockify lets you store less data, spend less on computing, and still get better answers- turning huge documents into a concise, high-quality knowledge base that anyone can search quickly.</p>
 
-    <div class="executive-summary">
-        <pre style="font-family: monospace; font-size: 13px; overflow-x: auto;">
-+----------------+    +------------------+    +------------------+    +---------------+
-|    Source      |    |    Blockify      |    |   Distillation   |    |   Optimized   |
-|   Documents    |--->|    Ingestion     |--->|   (Dedupe)       |--->|   IdeaBlocks  |
-|                |    |                  |    |                  |    |               |
-| - PDFs         |    | - Semantic       |    | - Similarity     |    | - Unique      |
-| - Docs         |    |   Chunking       |    |   Clustering     |    | - Complete    |
-| - Text         |    | - LLM Extraction |    | - LLM Merging    |    | - Searchable  |
-+----------------+    +------------------+    +------------------+    +---------------+
-        </pre>
+        <p>Blockify works by processing chunks of text to create structured data from an unstructured data source.</p>
+
+        <div style="width: 100%; height: auto; background-color: var(--light-gray); border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; margin-top: 20px; margin-bottom: 20px; padding-top: 1rem; padding-bottom: 1rem;">
+            <center>
+                <p style="color: var(--text-secondary); font-style: italic; padding-bottom: 0;">
+                    <img src="https://iternal.us/wp-content/uploads/2025/05/BLOCKIFY-WORKFLOW.png" alt="Blockify Process Diagram" style="max-width: 90%; height: auto;">
+                </p>
+            </center>
+        </div>
     </div>
-
-    <h4>Key Benefits</h4>
-
-    <ul>
-        <li><strong>Higher Search Accuracy:</strong> IdeaBlocks are semantically complete, making vector search more accurate</li>
-        <li><strong>Reduced Token Usage:</strong> Distilled content is smaller, reducing LLM context window requirements</li>
-        <li><strong>Lower Costs:</strong> Fewer tokens means lower API costs and faster response times</li>
-        <li><strong>Enterprise Scalability:</strong> Deduplication across documents eliminates redundancy at scale</li>
-    </ul>
 </div>

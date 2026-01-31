@@ -1,33 +1,34 @@
 <div class="section">
-    <h3 class="section-title">Methodology and Calculations</h3>
+    <h3 class="section-title">Notes on Calculations</h3>
 
-    <h4>Vector Accuracy Improvement Calculation</h4>
-    <p>
-        The vector accuracy improvement is calculated by comparing the cosine distance between
-        queries and their best-matching results for both traditional chunks and Blockify<sup>&reg;</sup> IdeaBlocks.
-    </p>
-
-    <div class="executive-summary" style="font-family: monospace; font-size: 14px;">
-        <strong>Formula:</strong><br><br>
-        Vector Improvement = Avg Chunk Distance / Avg Distilled Distance<br><br>
-        Where:<br>
-        - Chunk Distance = Average cosine distance from queries to best-matching chunks<br>
-        - Distilled Distance = Average cosine distance from queries to best-matching IdeaBlocks<br><br>
-
-        <strong>This Benchmark:</strong><br>
-        Vector Improvement = {{ "%.6f"|format(metrics.avg_chunk_distance|default(0)) }} / {{ "%.6f"|format(metrics.avg_distilled_distance|default(0)) }} = <span class="improvement-positive">{{ metrics.vector_improvement|format_decimal(2) }}X</span>
+    <div class="summary-card">
+        <div class="summary-title">Vector Accuracy Improvement Calculation</div>
+        <p>The percentage improvement is calculated by first determining the absolute reduction in distance - subtracting the new method's {{ "%.10f"|format(metrics.avg_distilled_distance|default(0)) }} distance from the legacy method's {{ "%.10f"|format(metrics.avg_chunk_distance|default(0)) }} distance to get {{ "%.8f"|format((metrics.avg_chunk_distance|default(0) - metrics.avg_distilled_distance|default(0))) }} units - and then calculating what fraction {{ "%.8f"|format((metrics.avg_chunk_distance|default(0) - metrics.avg_distilled_distance|default(0))) }} is of the original {{ "%.10f"|format(metrics.avg_chunk_distance|default(0)) }} distance. This fraction ({{ "%.8f"|format((metrics.avg_chunk_distance|default(0) - metrics.avg_distilled_distance|default(0))) }} / {{ "%.10f"|format(metrics.avg_chunk_distance|default(0)) }}) is multiplied by 100 to convert it into a percentage, resulting in a {{ "%.5f"|format(((metrics.avg_chunk_distance|default(0.45) - metrics.avg_distilled_distance|default(0.09)) / metrics.avg_chunk_distance|default(0.45) * 100)|default(80)) }}% improvement in vector distance (accuracy).</p>
     </div>
 
-    <h4>Why Cosine Distance?</h4>
-    <p>
-        Cosine distance measures the angular difference between two vectors, making it ideal for
-        comparing semantic similarity in embedding space. A lower distance indicates higher similarity.
-    </p>
-    <ul>
-        <li><strong>Distance = 0:</strong> Vectors are identical (perfect match)</li>
-        <li><strong>Distance = 1:</strong> Vectors are orthogonal (unrelated)</li>
-        <li><strong>Distance = 2:</strong> Vectors are opposite (contradictory)</li>
-    </ul>
+    <div class="summary-card">
+        <div class="summary-title">Distilled versus Undistilled IdeaBlocks Calculation</div>
+        <p>We further determined that distilling the information using Blockify's Intelligent Distillation does not negatively impact vector search accuracy and instead improves vector search accuracy when comparing a Blockify Distilled dataset versus an Undistilled dataset by +{{ "%.5f"|format(((metrics.avg_undistilled_distance|default(0.15) - metrics.avg_distilled_distance|default(0.09)) / metrics.avg_undistilled_distance|default(0.15) * 100)|default(40)) }}% Improvement in Accuracy</p>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-title">Details on the Distance Calculation</div>
+        <p>To calculate the distance to the best match we use a script to determine the cosine similarity between two numerical vectors. It begins by converting each input vector from a string format into an array of numbers and verifies that both vectors have the same number of dimensions.</p>
+        <p>The cosine similarity is then computed by first determining the dot product of the two vectors (the sum of the products of each corresponding pair of elements) and independently calculating the Euclidean norm (or magnitude) of each vector by taking the square root of the sum of the squares of its components.</p>
+        <p>Finally, the cosine similarity is obtained by dividing the dot product by the product of the two magnitudes, yielding a value that measures the orientation similarity between the vectors regardless of their scale, as represented by the formula cos(theta) = (A . B) / (||A|| ||B||).</p>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-title">Details on the Best Match Calculation</div>
+        <p>To provide an ultra conservative and non-subjective determination of vector accuracy improvement, the "Best Matching" Chunk DOES NOT mean it is the most textually accurate for the User Query. For impartiality, the same applies to the "Best Matching" IdeaBlock.</p>
+        <p>"Best Matching" only means it is the closest in vector search distance between the User Query and the chunk in question. This approach avoids subjectivity in choosing one chunk over another for more favorable results.</p>
+        <p>Note this would also mean that the LLM may receive less optimal data for its response synthesis which would also lower quality for the Legacy RAG response.</p>
+        <p>Additionally because we are conducting the test with a single document in the vector dataset, the results will be heavily idealized to the benefit of the chunked text because other documents could have made the best match even less relevant than when using a single document.</p>
+        <p>This process begins by analyzing the vector embeddings of the Chunks / IdeaBlocks and the vector embedding of the user's question where each row contains a question and an array of all the candidate answers along with their vector representations.</p>
+        <p>For every entry, the program uses the vector numerical arrays for mathematical comparison. The script calculates each question's cosine distance between the question's vector and every candidate answer's vector, which quantitatively measures their similarity.</p>
+        <p>The candidate answer with the smallest cosine distance (a sign of highest similarity) is selected as the best match, and that distance is output by the script.</p>
+        <p>We can then calculate the average distance for best match across all questions in the dataset to determine overall vector distance (which determines overall accuracy).</p>
+    </div>
 
     <h4>Aggregate Performance Calculation</h4>
     <div class="executive-summary" style="font-family: monospace; font-size: 14px;">

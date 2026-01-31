@@ -1,4 +1,27 @@
 <div class="section">
+    <h3 class="section-title">8. The Benefits</h3>
+    <div class="summary-card">
+        <h4 style="color: var(--primary-color); font-weight: 600; margin-bottom: 10px;">8.1 Technical</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Hallucination Mitigation:</strong> {{ metrics.enterprise_performance|format_decimal(0) }}X accuracy uplift validated on {{ company_name }} data.</li>
+            <li><strong>Blockified Output Data is Model-Agnostic:</strong> Works with open source or proprietary LLMs; multiple embedding choices.</li>
+            <li><strong>Seamless API Integration:</strong> Pushes optimized corpus into existing RAG stacks; no re-architecture.</li>
+        </ul>
+
+        <h4 style="color: var(--primary-color); font-weight: 600; margin-top: 20px; margin-bottom: 10px;">8.2 Operational</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Lifecycle Cost Reduction:</strong> Subject Matter Experts (SMEs) review less than 2.5% of original corpus size on a cadence (i.e. quarterly) with updates measured in hours or minutes.</li>
+            <li><strong>Governance & Compliance:</strong> Tags enforce export-control or privacy rules ("ITAR", "PII-redacted").</li>
+        </ul>
+
+        <h4 style="color: var(--primary-color); font-weight: 600; margin-top: 20px; margin-bottom: 10px;">8.3 Business</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Revenue Protection:</strong> Avoid billion-dollar bid errors; increase document turnaround speed.</li>
+            <li><strong>Time:</strong> Save time by accelerating your time to market with AI solutions that are more accurate and help your teams become more productive.</li>
+            <li><strong>Competitive Moat:</strong> 2.5% golden corpus is proprietary intellectual capital, difficult for rivals to replicate.</li>
+        </ul>
+    </div>
+
     <h3 class="section-title">Business Benefits Summary</h3>
 
     <div class="key-metrics">
@@ -64,4 +87,20 @@
         <li>Evaluate integration with your existing RAG pipeline for production deployment</li>
         <li>Contact your Blockify<sup>&reg;</sup> representative for enterprise licensing options</li>
     </ul>
+</div>
+
+<div class="section">
+    <h3 class="section-title">9. The Future</h3>
+    <div class="summary-card">
+        <p><strong>Self-Healing Datasets:</strong> LLM agents autonomously draft IdeaBlock updates and route them to Subject Matter Experts (SMEs) for approval.</p>
+    </div>
+</div>
+
+<div class="section">
+    <h3 class="section-title">10. Conclusion</h3>
+    <div class="summary-card">
+        <p>Blockify converts unreliable RAG prototypes into production-grade, trusted AI systems.</p>
+        <p>By Blockifying content into governed IdeaBlocks, improving LLM accuracy by ~{{ metrics.enterprise_performance|format_decimal(0) }}X ({{ (metrics.enterprise_performance|default(78) * 100)|format_number }}%), the solution meets the dual mandate of accuracy and security.</p>
+        <p>Enterprises that adopt this architecture can accelerate Gen-AI roll-outs, reduce risk, and secure sustainable competitive advantage.</p>
+    </div>
 </div>

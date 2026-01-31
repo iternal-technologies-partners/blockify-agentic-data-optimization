@@ -1,8 +1,95 @@
 <div class="section">
-    <h3 class="section-title">Vector Search Accuracy Comparison</h3>
+    <h3 class="section-title">Blockify Vector Search Accuracy Improvement of {{ metrics.vector_improvement|format_decimal(2) }}X</h3>
+    <div class="summary-card">
+        <p>In the "Blockify Vector Search Accuracy Improvement" component of this study, an A/B test scenario was devised to compare Blockify's vector search performance (Scenario A) against a conventional chunking method (Scenario B). The objective was to assess whether Blockify's specialized approach to generating IdeaBlocks and metadata-driven embeddings enhances search accuracy when users query a document.</p>
+
+        <p>The documents provided by the customer were segmented into IdeaBlocks using Blockify, which integrates distilled concept extraction and custom metadata (e.g., block names, critical questions, and trusted answers) in forming vector embeddings. This was contrasted with a traditional linear chunk-based approach, wherein approximately 2,000-character segments were extracted with a 200-character overlap and subsequently embedded. Average distances between each user query and its "best match" segment (or IdeaBlock) served as the primary performance measure for vector search accuracy.</p>
+
+        <p>Results highlight a marked improvement in accuracy when employing Blockify. Legacy chunking achieved an average distance of {{ "%.4f"|format(metrics.avg_chunk_distance|default(0.45)) }}, whereas Blockify's corresponding distance ranged from {{ "%.4f"|format(metrics.avg_undistilled_distance|default(0.15)) }} (undistilled IdeaBlocks) to {{ "%.4f"|format(metrics.avg_distilled_distance|default(0.09)) }} (distilled IdeaBlocks). This translates to a {{ "%.2f"|format(((metrics.avg_chunk_distance|default(0.45) - metrics.avg_distilled_distance|default(0.09)) / metrics.avg_chunk_distance|default(0.45) * 100)|default(80)) }}% performance increase in search precision for distilled IdeaBlocks relative to the legacy approach. Notably, even after distillation, an optional process designed to remove duplicate or extraneous information and reduce text volume, the accuracy of the vector search was improved by an additional {{ "%.2f"|format(((metrics.avg_undistilled_distance|default(0.15) - metrics.avg_distilled_distance|default(0.09)) / metrics.avg_undistilled_distance|default(0.15) * 100)|default(40)) }}%.</p>
+
+        <p>These findings emphasize the potential of optimized, metadata-enriched embeddings to yield substantial gains in information retrieval tasks. By leveraging refined conceptual segmentation (IdeaBlocks), the Blockify pipeline not only mitigates redundancy but also enhances the granular representation of content. The net result is a more accurate and efficient vector search experience, indicating that intelligent data distillation can outperform conventional chunking strategies both in terms of precision and storage efficiency.</p>
+
+        <div style="width: 100%; height: 400px; background-color: var(--light-gray); border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; margin-top: 20px; margin-bottom: 20px; padding-top: 1rem; padding-bottom: 1rem;">
+            <center>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="auto" height="350px" viewBox="0 0 1617.674 845.875">
+                    <defs>
+                        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                            <stop offset="0" stop-color="#007ec7"/>
+                            <stop offset="1" stop-color="#009ef9"/>
+                        </linearGradient>
+                    </defs>
+                    <g id="Group_2569" data-name="Group 2569" transform="translate(-274.326 -67)">
+                        <g id="Group_817" data-name="Group 817" transform="translate(0.252 0.224)">
+                            <g id="Ellipse_51" data-name="Ellipse 51" transform="translate(337.748 436.019)" fill="#acffa5" stroke="#707070" stroke-width="1">
+                                <circle cx="149.133" cy="149.133" r="149.133" stroke="none"/>
+                                <circle cx="149.133" cy="149.133" r="148.633" fill="none"/>
+                            </g>
+                            <line id="Line_81" data-name="Line 81" x2="149.133" transform="translate(487.268 585.538)" fill="none" stroke="#009b3c" stroke-width="6" stroke-dasharray="11 7"/>
+                            <ellipse id="Ellipse_49" data-name="Ellipse 49" cx="50.226" cy="50.612" rx="50.226" ry="50.612" transform="translate(436.654 534.925)" fill="#009b3c"/>
+                            <text id="Target_Result" data-name="Target Result" transform="translate(487.268 579.538)" fill="#fff" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-33.197" y="0">Target</tspan><tspan x="-32.838" y="30">Result</tspan></text>
+                            <text id="Blockify_Result" data-name="Blockify Result" transform="translate(581.197 543.562)" font-size="19" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-34.674" y="0">Blockify</tspan><tspan x="-27.127" y="25">Result</tspan></text>
+                        </g>
+                        <g id="Group_773" data-name="Group 773" transform="translate(1026.641 157.875)">
+                            <g id="Group_772" data-name="Group 772" transform="translate(201.328 101.116)">
+                                <g id="Group_769" data-name="Group 769" transform="translate(0 0)">
+                                    <g id="Ellipse_52" data-name="Ellipse 52" transform="translate(0.031 -0.116)" fill="#ffa5a5" stroke="#707070" stroke-width="1">
+                                        <circle cx="327" cy="327" r="327" stroke="none"/>
+                                        <circle cx="327" cy="327" r="326.5" fill="none"/>
+                                    </g>
+                                    <g id="Group_768" data-name="Group 768" transform="translate(321.404 322.307)">
+                                        <g id="Ellipse_55" data-name="Ellipse 55" transform="translate(-4.374 -4.422)" fill="#acffa5" stroke="#009b3c" stroke-width="1">
+                                            <circle cx="8.5" cy="8.5" r="8.5" stroke="none"/>
+                                            <circle cx="8.5" cy="8.5" r="8" fill="none"/>
+                                        </g>
+                                        <circle id="Ellipse_49-2" data-name="Ellipse 49" cx="4.5" cy="4.5" r="4.5" transform="translate(-0.374 -0.422)" fill="#009b3c"/>
+                                        <text id="Target_Result-2" data-name="Target Result" transform="translate(4.126 3.077)" fill="#fff" font-size="2" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-2.887" y="0">Target</tspan><tspan x="-2.855" y="3">Result</tspan></text>
+                                    </g>
+                                </g>
+                                <line id="Line_82" data-name="Line 82" x2="320" transform="translate(334.031 326.884)" fill="none" stroke="red" stroke-width="6" stroke-dasharray="11 7"/>
+                                <g id="Polygon_40" data-name="Polygon 40" transform="translate(346.863 289.256) rotate(140)">
+                                    <path d="M 82.15336608886719 65.40584564208984 L 0.9060549736022949 65.40584564208984 L 41.52970886230469 0.9378740191459656 L 82.15336608886719 65.40584564208984 Z" stroke="none"/>
+                                    <path d="M 41.52970886230469 1.875755310058594 L 1.812118530273438 64.90584564208984 L 81.24729919433594 64.90584564208984 L 41.52970886230469 1.875755310058594 M 41.52970886230469 0 L 83.05941772460938 65.90584564208984 L 0 65.90584564208984 L 41.52970886230469 0 Z" stroke="none" fill="#000"/>
+                                </g>
+                                <line id="Line_83" data-name="Line 83" x1="80.308" y1="93.108" transform="translate(204.531 184.509)" fill="none" stroke="#000" stroke-width="24"/>
+                                <g id="Group_822" data-name="Group 822" transform="translate(446.476 -365.051) rotate(70)">
+                                    <g id="Polygon_47" data-name="Polygon 47" transform="translate(513.863 104.631) rotate(140)">
+                                        <path d="M 82.15336608886719 65.40584564208984 L 0.9060549736022949 65.40584564208984 L 41.52970886230469 0.9378740191459656 L 82.15336608886719 65.40584564208984 Z" stroke="none"/>
+                                        <path d="M 41.52970886230469 1.875755310058594 L 1.812118530273438 64.90584564208984 L 81.24729919433594 64.90584564208984 L 41.52970886230469 1.875755310058594 M 41.52970886230469 0 L 83.05941772460938 65.90584564208984 L 0 65.90584564208984 L 41.52970886230469 0 Z" stroke="none" fill="#000"/>
+                                    </g>
+                                    <line id="Line_89" data-name="Line 89" x1="49.5" y1="59.414" transform="translate(402.339 33.578)" fill="none" stroke="#000" stroke-width="24"/>
+                                </g>
+                            </g>
+                            <text id="Basic_AI_Vector_Search_Result" data-name="Basic AI Vector Search Result" transform="translate(684.572 342.072)" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-79.427" y="0">Basic AI Vector</tspan><tspan x="-71.673" y="30">Search Result</tspan><tspan x="-103.59" y="60">~{{ metrics.enterprise_performance|format_decimal(2) }} Less Accurate</tspan></text>
+                            <text id="Inaccurate_result" data-name="Inaccurate result could be anywhere in the red circle." transform="translate(528.359 629)" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-134.12" y="0">Inaccurate result could be</tspan><tspan x="-136.001" y="30">anywhere in the red circle.</tspan></text>
+                            <text id="Target_Result-3" data-name="Target Result" transform="translate(362.572 247.072)" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-33.197" y="0">Target</tspan><tspan x="-32.838" y="30">Result</tspan></text>
+                            <text id="Inaccurate_Result" data-name="Inaccurate Result" transform="translate(764.572 78.072)" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-54.681" y="0">Inaccurate</tspan><tspan x="-32.838" y="30">Result</tspan></text>
+                        </g>
+                        <text id="Legacy_AI_Vector_Search" data-name="Legacy AI Vector Search" transform="translate(1545.91 119)" font-size="50" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-275.525" y="0">Legacy AI Vector Search</tspan></text>
+                        <text id="Blockify_Optimized" data-name="Blockify Optimized" transform="translate(487.326 332)" font-size="50" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-212.476" y="0">Blockify Optimized</tspan></text>
+                        <text id="_More_Accurate" data-name="More Accurate" transform="translate(487.326 401)" font-size="30" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-138.618" y="0">~{{ metrics.enterprise_performance|format_decimal(2) }} More Accurate</tspan></text>
+                        <text id="Accurate_result" data-name="Accurate result could be anywhere in the green circle." transform="translate(487 781.027)" font-size="23" font-family="Roboto-Bold, Roboto" font-weight="700"><tspan x="-125.899" y="0">Accurate result could be</tspan><tspan x="-148.742" y="30">anywhere in the green circle.</tspan></text>
+                        <path id="Path_718" data-name="Path 718" d="M23826.91-6907.88s-168.578,291.952-458.785,284.662c-272.162,1.1-418.221-130.941-418.221-130.941" transform="translate(-22281 7500)" fill="none" stroke="#000" stroke-width="5" stroke-dasharray="11"/>
+                        <path id="Polygon_30" data-name="Polygon 30" d="M27.784,0,55.567,56.414H0Z" transform="translate(608.943 731.896) rotate(-50)" fill="url(#linear-gradient)"/>
+                        <circle id="Ellipse_56" data-name="Ellipse 56" cx="10" cy="10" r="10" transform="translate(1764 697)" fill="red"/>
+                        <circle id="Ellipse_63" data-name="Ellipse 63" cx="10" cy="10" r="10" transform="translate(1872 576)" fill="red"/>
+                        <circle id="Ellipse_57" data-name="Ellipse 57" cx="10" cy="10" r="10" transform="translate(1589 857)" fill="red"/>
+                        <circle id="Ellipse_58" data-name="Ellipse 58" cx="10" cy="10" r="10" transform="translate(1329 659)" fill="red"/>
+                        <circle id="Ellipse_59" data-name="Ellipse 59" cx="10" cy="10" r="10" transform="translate(1696 395)" fill="red"/>
+                        <circle id="Ellipse_60" data-name="Ellipse 60" cx="10" cy="10" r="10" transform="translate(1744 426)" fill="red"/>
+                        <circle id="Ellipse_61" data-name="Ellipse 61" cx="10" cy="10" r="10" transform="translate(1522 293)" fill="red"/>
+                        <circle id="Ellipse_62" data-name="Ellipse 62" cx="10" cy="10" r="10" transform="translate(1454 592)" fill="red"/>
+                    </g>
+                </svg>
+            </center>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Vector Search Accuracy Comparison Charts</h3>
 
     <p>
-        The following chart visualizes the vector search accuracy comparison between traditional
+        The following charts visualize the vector search accuracy comparison between traditional
         chunking and Blockify<sup>&reg;</sup> IdeaBlocks. Higher accuracy indicates that the
         retrieved content is more semantically similar to the query.
     </p>

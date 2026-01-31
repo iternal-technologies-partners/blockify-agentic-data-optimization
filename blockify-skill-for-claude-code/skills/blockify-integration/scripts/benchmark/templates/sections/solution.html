@@ -1,42 +1,64 @@
 <div class="section">
-    <h3 class="section-title">The Blockify<sup>&reg;</sup> Solution</h3>
+    <h3 class="section-title">6. The Solution - Blockify<sup>&reg;</sup></h3>
+    <div class="summary-card">
+        <p>Blockify<sup>&reg;</sup> replaces the traditional "dump-and-chunk" approach with an end-to-end pipeline that cleans and organizes content before it ever hits a vector store.</p>
+        <p>Admins first define who should see what, then the system ingests any file type-Word, PDF, slides, images-inside public cloud, private cloud, or on-prem. A context-aware splitter finds natural breaks, and a series of specially developed Blockify LLM model turns each segment into a draft IdeaBlock.</p>
+        <p>Blockify identifies near-duplicates so an LLM can merge them into a single, canonical IdeaBlock, while auto-tagging assigns clearance, version, and product labels. Because the dataset is now thousands of blocks instead of millions of paragraphs, experts can validate the whole knowledge base in a quick pass once a quarter and export it to any vector DB or export as an air-gapped JSON bundle for use with AirgapAI.</p>
+        <p>The payoff is a knowledge set roughly 40X smaller and more accurate, free of version conflicts and duplicate noise, and guarded by field-level permissions that travel with every IdeaBlock, combined with improved search capabilities lead to a 78X improvement in LLM accuracy.</p>
+        <p>GenAI systems fed with this curated data return sharper answers, hallucinate far less, and comply with security policies out of the box.</p>
+        <p>The result: higher trust, lower operating cost, and a clear path to enterprise-scale RAG without the cleanup headaches that stall most AI rollouts.</p>
 
-    <p>
-        Blockify<sup>&reg;</sup> solves these challenges through intelligent knowledge distillation:
-    </p>
-
-    <h4>1. Semantic Chunking</h4>
-    <p>
-        Instead of splitting by character count, Blockify<sup>&reg;</sup> uses LLMs to identify
-        natural semantic boundaries. Each IdeaBlock represents a complete unit of knowledge
-        that answers exactly one question—no more, no less.
-    </p>
-
-    <h4>2. Structured Extraction</h4>
-    <p>
-        Every IdeaBlock contains three key components:
-    </p>
-    <ul>
-        <li><strong>Name:</strong> A descriptive title for the knowledge unit</li>
-        <li><strong>Critical Question:</strong> The specific question this block answers</li>
-        <li><strong>Trusted Answer:</strong> A complete, validated answer</li>
-    </ul>
-    <p>
-        This structure ensures that embeddings capture the full semantic meaning and that
-        retrieved content is immediately useful.
-    </p>
-
-    <h4>3. Enterprise Deduplication</h4>
-    <p>
-        Blockify<sup>&reg;</sup>'s distillation process identifies semantically similar IdeaBlocks
-        across documents and merges them into single, authoritative versions. This eliminates
-        the redundancy problem at its source, reducing database size while improving quality.
-    </p>
-
-    <h4>4. Optimized Retrieval</h4>
-    <p>
-        Because IdeaBlocks are semantically complete and deduplicated, vector search returns
-        more accurate results with fewer candidates. LLMs receive cleaner context, enabling
-        faster and more accurate responses.
-    </p>
+        <h4 style="color: var(--primary-color); font-weight: 600; margin-top: 20px; margin-bottom: 10px;">6.1 How It Works (Full Technical Flow)</h4>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Step 0 - Scoping</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Admins specify Index hierarchy (e.g., Org > Business Unit > Product > Persona / Clearance).</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 1 - Document Ingestion</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Accepted formats: DOCX, PDF, PPT, PNG/JPG, markdown, HTML.</li>
+                    <li>Pipeline kicks off data ingestion in the cloud or inside a secure private cloud or on-prem cluster.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 2 - Chunking & LLM Extraction</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Adaptive windowing algorithm finds natural semantic breaks rather than fixed 500-char splits.</li>
+                    <li>Use a specially developed Blockify Fine-tuned LLaMA 3 model to ingest and convert each text chunk into a collection of draft IdeaBlocks.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 3 - Semantic Deduplication</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Open-source Jina Embeddings (or customer-preferred model) generate embeddings.</li>
+                    <li>Advanced clustering groups near-duplicates at user defined thresholds.</li>
+                    <li>Specialized LLMs distill clusters of draft IdeaBlocks into canonical IdeaBlocks while preserving nuance.</li>
+                    <li>Average reduction is 40 times smaller, reducing a dataset down to ~2.5% of original size.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 4 - Taxonomy/Tagging</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Auto-generated tags using specialized LLMs for data classification clearance level, source system, product line, version, NDA status, etc.</li>
+                    <li>Admins may append manual tags (e.g., "NATO-restricted" vs "Five-Eyes-only").</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 5 - Human Validation</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Because the dataset size is now much smaller and human manageable (thousands of IdeaBlocks vs millions of paragraphs), Subject Matter Experts can perform quarterly review in hours rather than years.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 6 - Export & Integration</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Option A: API push to customer's existing vector DB (Pinecone, Vertex Matching Engine, Azure AI Search, etc.).</li>
+                    <li>Option B: Local embedding and output as a JSON-L file for offline-only environments.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 10px;"><strong>Step 7 - Use</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>Leverage Iternal's AirgapAI to perform RAG with Optimized datasets locally</li>
+                    <li>Use Iternal's Turnkey AI Enterprise Platform of Apps with Blockify to improve accuracy of document creation, such as RFP response writing using Waypoint</li>
+                    <li>Apply Blockified Dataset to an existing RAG workflow / pipeline already established by your IT teams.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

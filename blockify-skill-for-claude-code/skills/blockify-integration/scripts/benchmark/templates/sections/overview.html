@@ -1,28 +1,18 @@
 <div class="section">
-    <h3 class="section-title">Executive Overview</h3>
+    <h3 class="section-title">Report Overview</h3>
     <div class="executive-summary">
         <p>
-            This report presents a comprehensive performance analysis comparing Blockify<sup>&reg;</sup> IdeaBlocks
-            against traditional text chunking methods for Retrieval-Augmented Generation (RAG) systems.
+            This report presents a comprehensive analysis of the Blockify<sup>&reg;</sup> data ingestion, distillation and optimization
+            capabilities to support {{ company_name }}, compared to traditional chunking methods. Using Blockify's distillation approach, the <strong>projected aggregate Enterprise Performance improvement for {{ company_name }} is <span class="improvement-positive" style="font-size: 1.1em;">{{ metrics.enterprise_performance|format_decimal(2) }}X</span></strong>. This performance includes the improvements made by Blockify<sup>&reg;</sup> in enterprise distillation of knowledge, vector accuracy, and data volume reductions for enterprise content lifecycle management.
+        </p>
+        <p style="margin-top: 15px;">
+            According to IDC's "Accelerating Efficiency and Driving Down IT Costs Using Data Duplication" study, the average enterprise has between an 8:1 and 22:1 duplication frequency ("Enterprise Performance"). Factoring in an average Enterprise Data Duplication Factor of {{ config.enterprise_dup_factor }}:1 (which accounts for typical data redundancy across multiple documents and systems in an enterprise setting), the aggregate performance improvement of {{ metrics.aggregate_performance|format_decimal(2) }}X based on vector accuracy and data volume reductions for enterprise content lifecycle management is further increased ~{{ config.enterprise_dup_factor }}X to a projected aggregate Enterprise Performance of {{ metrics.enterprise_performance|format_decimal(2) }}X. This highlights the compounded benefits of Blockify<sup>&reg;</sup> in a larger-scale enterprise environment.
         </p>
         <p>
-            <strong>Key Finding:</strong> Blockify<sup>&reg;</sup> demonstrates a
-            <span class="improvement-positive">{{ metrics.vector_improvement|format_decimal(2) }}X</span> improvement
-            in vector search accuracy and a
-            <span class="improvement-positive">{{ metrics.word_improvement|format_decimal(2) }}X</span> reduction
-            in content size, resulting in an aggregate performance improvement of
-            <span class="improvement-positive">{{ metrics.aggregate_performance|format_decimal(2) }}X</span>.
-        </p>
-        <p>
-            When accounting for the {{ config.enterprise_dup_factor }}X enterprise data duplication factor
-            (based on industry research showing 8:1 to 22:1 data duplication ratios in enterprise environments),
-            the projected enterprise performance improvement is
-            <span class="improvement-positive" style="font-size: 1.2em; font-weight: bold;">
-                {{ metrics.enterprise_performance|format_decimal(2) }}X
-            </span>.
+            Blockify also improves token efficiency by <strong>{{ metrics.token_improvement|format_decimal(2) }}X</strong> compared to traditional chunking methods, which can translate into <span class="improvement-positive"><strong>cost savings of {{ metrics.cost_savings_per_year|format_currency }} per year</strong></span>, in addition to the accuracy benefits delivered by Blockify.
         </p>
         {% if not metrics.distillation_run %}
-        <p class="note">
+        <p class="note" style="margin-top: 15px;">
             <i class="fas fa-info-circle"></i> Note: Distillation was not run on this dataset.
             Run distillation to see the full comparison between undistilled and distilled IdeaBlocks.
         </p>

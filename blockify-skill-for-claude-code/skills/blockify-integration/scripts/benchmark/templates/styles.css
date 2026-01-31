@@ -349,6 +349,76 @@ li {
     color: #555555;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header .header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrapper .icon {
+    width: 22px;
+    height: 22px;
+}
+
+.id-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content .title {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.card-content .question {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.card-content .answer,
+.card-content .chunk-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555555;
+    flex: 1;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
 .note {
     font-size: 0.9em;
     color: var(--text-secondary);
