@@ -1,0 +1,31 @@
+<div class="section">
+    <h3 class="section-title">Executive Overview</h3>
+    <div class="executive-summary">
+        <p>
+            This report presents a comprehensive performance analysis comparing Blockify<sup>&reg;</sup> IdeaBlocks
+            against traditional text chunking methods for Retrieval-Augmented Generation (RAG) systems.
+        </p>
+        <p>
+            <strong>Key Finding:</strong> Blockify<sup>&reg;</sup> demonstrates a
+            <span class="improvement-positive">{{ metrics.vector_improvement|format_decimal(2) }}X</span> improvement
+            in vector search accuracy and a
+            <span class="improvement-positive">{{ metrics.word_improvement|format_decimal(2) }}X</span> reduction
+            in content size, resulting in an aggregate performance improvement of
+            <span class="improvement-positive">{{ metrics.aggregate_performance|format_decimal(2) }}X</span>.
+        </p>
+        <p>
+            When accounting for the {{ config.enterprise_dup_factor }}X enterprise data duplication factor
+            (based on industry research showing 8:1 to 22:1 data duplication ratios in enterprise environments),
+            the projected enterprise performance improvement is
+            <span class="improvement-positive" style="font-size: 1.2em; font-weight: bold;">
+                {{ metrics.enterprise_performance|format_decimal(2) }}X
+            </span>.
+        </p>
+        {% if not metrics.distillation_run %}
+        <p class="note">
+            <i class="fas fa-info-circle"></i> Note: Distillation was not run on this dataset.
+            Run distillation to see the full comparison between undistilled and distilled IdeaBlocks.
+        </p>
+        {% endif %}
+    </div>
+</div>

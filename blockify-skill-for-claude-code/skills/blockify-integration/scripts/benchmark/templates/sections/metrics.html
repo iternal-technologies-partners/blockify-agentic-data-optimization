@@ -1,0 +1,67 @@
+<div class="section">
+    <h3 class="section-title">Key Performance Indicators</h3>
+
+    <div class="key-metrics">
+        <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="metric-title">Blockify<sup>&reg;</sup> Vector Search<br>Accuracy Improvement</div>
+            <div class="metric-value">{{ metrics.vector_improvement|format_decimal(2) }}X</div>
+        </div>
+        <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="metric-title">Blockify<sup>&reg;</sup> Total<br>Enterprise Performance</div>
+            <div class="metric-value highlight">{{ metrics.enterprise_performance|format_decimal(2) }}X</div>
+        </div>
+        <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="metric-title">Blockify<sup>&reg;</sup> Information Distillation<br>Enterprise Performance</div>
+            <div class="metric-value">{{ (metrics.word_improvement * config.enterprise_dup_factor)|format_decimal(2) }}X</div>
+        </div>
+    </div>
+
+    <div class="key-metrics">
+        <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="metric-title">Token Efficiency<br>Improvement Factor</div>
+            <div class="metric-value">{{ metrics.token_improvement|format_decimal(2) }}X</div>
+        </div>
+        <div class="metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="metric-title">Cost Savings from Token Efficiency<br>({{ config.number_of_user_queries|format_number }} queries/year)</div>
+            <div class="metric-value highlight">{{ metrics.cost_savings_per_year|format_currency }}</div>
+        </div>
+    </div>
+
+    <div class="executive-summary">
+        <p>
+            For this technical analysis we compare the performance of Blockify<sup>&reg;</sup> to the legacy RAG process:
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Technology Component</th>
+                    <th>Traditional Chunking</th>
+                    <th>Blockify<sup>&reg;</sup></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dataset</td>
+                    <td>{{ company_name }} Documents</td>
+                    <td>{{ company_name }} Documents</td>
+                </tr>
+                <tr>
+                    <td>Chunking Method</td>
+                    <td>~2,000 Character Chunks with 200 Character Overlap</td>
+                    <td>Blockify<sup>&reg;</sup> IdeaBlocks (semantic chunking)</td>
+                </tr>
+                <tr>
+                    <td>Vector Embeddings</td>
+                    <td>OpenAI text-embedding-3-small</td>
+                    <td>OpenAI text-embedding-3-small</td>
+                </tr>
+                <tr>
+                    <td>LLM Processing</td>
+                    <td>-</td>
+                    <td>Fine-tuned Blockify<sup>&reg;</sup> LLM</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

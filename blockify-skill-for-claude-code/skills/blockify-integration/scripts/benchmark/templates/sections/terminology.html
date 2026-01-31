@@ -1,0 +1,54 @@
+<div class="section">
+    <h3 class="section-title">Terminology and Definitions</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>IdeaBlock</strong></td>
+                <td>A self-contained unit of knowledge extracted by Blockify<sup>&reg;</sup>, consisting of a name, critical question, and trusted answer. Each IdeaBlock answers exactly one question completely.</td>
+            </tr>
+            <tr>
+                <td><strong>RAG (Retrieval-Augmented Generation)</strong></td>
+                <td>An AI architecture that combines information retrieval with language generation, using a knowledge base to provide context for LLM responses.</td>
+            </tr>
+            <tr>
+                <td><strong>Vector Embedding</strong></td>
+                <td>A numerical representation of text in high-dimensional space (typically 1536 dimensions for OpenAI models), where semantically similar texts have similar embeddings.</td>
+            </tr>
+            <tr>
+                <td><strong>Cosine Distance</strong></td>
+                <td>A measure of similarity between two vectors, calculated as 1 minus the cosine of the angle between them. Lower values indicate higher similarity.</td>
+            </tr>
+            <tr>
+                <td><strong>Chunking</strong></td>
+                <td>The process of splitting documents into smaller pieces for processing. Traditional chunking uses fixed character/token counts; Blockify<sup>&reg;</sup> uses semantic boundaries.</td>
+            </tr>
+            <tr>
+                <td><strong>Distillation</strong></td>
+                <td>The Blockify<sup>&reg;</sup> process of deduplicating and merging semantically similar IdeaBlocks to eliminate redundancy while preserving information completeness.</td>
+            </tr>
+            <tr>
+                <td><strong>Critical Question</strong></td>
+                <td>The specific question that an IdeaBlock is designed to answer. This field helps vector search match user queries to relevant content.</td>
+            </tr>
+            <tr>
+                <td><strong>Trusted Answer</strong></td>
+                <td>The validated, complete answer contained within an IdeaBlock. Trusted answers are extracted and verified by the Blockify<sup>&reg;</sup> LLM.</td>
+            </tr>
+            <tr>
+                <td><strong>Enterprise Duplication Factor</strong></td>
+                <td>A multiplier ({{ config.enterprise_dup_factor }}X) representing typical data redundancy in enterprise environments, based on industry research showing 8:1 to 22:1 duplication ratios.</td>
+            </tr>
+            <tr>
+                <td><strong>Token</strong></td>
+                <td>The basic unit of text processing for LLMs, approximately 4 characters on average. Token count directly affects API costs and processing time.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

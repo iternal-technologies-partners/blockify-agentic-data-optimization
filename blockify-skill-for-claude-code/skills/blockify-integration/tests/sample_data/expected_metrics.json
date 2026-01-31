@@ -1,0 +1,55 @@
+{
+  "description": "Expected benchmark metrics for validation testing",
+  "test_cases": [
+    {
+      "name": "Standard improvement scenario",
+      "inputs": {
+        "chunk_distance": 0.4,
+        "distilled_distance": 0.2,
+        "document_words": 10000,
+        "distilled_words": 400
+      },
+      "expected": {
+        "vector_improvement": 2.0,
+        "word_improvement": 25.0,
+        "aggregate_performance": 50.0,
+        "enterprise_performance": 750.0
+      }
+    },
+    {
+      "name": "No improvement scenario",
+      "inputs": {
+        "chunk_distance": 0.3,
+        "distilled_distance": 0.3,
+        "document_words": 1000,
+        "distilled_words": 1000
+      },
+      "expected": {
+        "vector_improvement": 1.0,
+        "word_improvement": 1.0,
+        "aggregate_performance": 1.0,
+        "enterprise_performance": 15.0
+      }
+    },
+    {
+      "name": "High accuracy improvement",
+      "inputs": {
+        "chunk_distance": 0.5,
+        "distilled_distance": 0.1,
+        "document_words": 50000,
+        "distilled_words": 1000
+      },
+      "expected": {
+        "vector_improvement": 5.0,
+        "word_improvement": 50.0,
+        "aggregate_performance": 250.0,
+        "enterprise_performance": 3750.0
+      }
+    }
+  ],
+  "constants": {
+    "enterprise_dup_factor": 15,
+    "char_to_token_ratio": 4,
+    "default_token_cost_per_million": 0.72
+  }
+}

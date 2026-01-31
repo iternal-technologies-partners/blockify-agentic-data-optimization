@@ -1,0 +1,53 @@
+<div class="section">
+    <h3 class="section-title">Word Frequency Analysis</h3>
+
+    <p>
+        The following chart compares word frequency between the original document content and
+        the distilled IdeaBlocks. Notice how Blockify<sup>&reg;</sup> reduces repetition while
+        preserving key terminology.
+    </p>
+
+    <div class="chart-container">
+        <img src="{{ charts.word_frequency }}" alt="Word Frequency Comparison Chart">
+    </div>
+
+    <h4>Top Words Comparison</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Original Frequency</th>
+                <th>Distilled Frequency</th>
+                <th>Reduction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word, count in word_frequencies.document[:10] %}
+            {% set distilled_count = 0 %}
+            {% for dword, dcount in word_frequencies.distilled %}
+                {% if dword == word %}
+                    {% set distilled_count = dcount %}
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td>{{ word }}</td>
+                <td>{{ count|format_number }}</td>
+                <td>{{ distilled_count|format_number }}</td>
+                <td class="improvement-positive">
+                    {% if count > 0 %}
+                    {{ ((count - distilled_count) / count * 100)|format_decimal(1) }}%
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="note">
+        Word frequency reduction indicates how effectively Blockify<sup>&reg;</sup> eliminates
+        redundant content while preserving essential information.
+    </p>
+</div>

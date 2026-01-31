@@ -1,0 +1,67 @@
+<div class="section">
+    <h3 class="section-title">Business Benefits Summary</h3>
+
+    <div class="key-metrics">
+        <div class="metric-card">
+            <div class="metric-title"><i class="fas fa-bullseye" style="color: var(--success-color);"></i><br>Improved Accuracy</div>
+            <div class="metric-value">{{ metrics.vector_improvement|format_decimal(2) }}X</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Better search results</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title"><i class="fas fa-compress-arrows-alt" style="color: var(--primary-color);"></i><br>Data Reduction</div>
+            <div class="metric-value">{{ metrics.word_improvement|format_decimal(2) }}X</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Smaller knowledge base</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title"><i class="fas fa-dollar-sign" style="color: var(--success-color);"></i><br>Cost Savings</div>
+            <div class="metric-value">{{ metrics.cost_savings_per_year|format_currency }}</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Annual token savings</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-title"><i class="fas fa-bolt" style="color: var(--warning-color);"></i><br>Faster Responses</div>
+            <div class="metric-value">{{ metrics.token_improvement|format_decimal(2) }}X</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Reduced latency</div>
+        </div>
+    </div>
+
+    <h4>Strategic Advantages</h4>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="summary-card">
+            <div class="summary-title"><i class="fas fa-search"></i> Search Quality</div>
+            <p>
+                IdeaBlocks are semantically complete, ensuring that search results directly answer
+                user questions without requiring multiple chunks to be pieced together.
+            </p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-title"><i class="fas fa-database"></i> Data Efficiency</div>
+            <p>
+                Enterprise-wide deduplication eliminates redundancy across documents, departments,
+                and versions, reducing storage costs and improving search performance.
+            </p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-title"><i class="fas fa-robot"></i> AI Performance</div>
+            <p>
+                Cleaner, more focused context enables LLMs to generate more accurate responses
+                with lower token consumption and faster inference times.
+            </p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-title"><i class="fas fa-chart-line"></i> Scalability</div>
+            <p>
+                As your knowledge base grows, the benefits compound. Enterprise-scale deduplication
+                prevents database bloat while maintaining search quality.
+            </p>
+        </div>
+    </div>
+
+    <h4>Next Steps</h4>
+    <ul>
+        <li>Review the detailed benchmark results to understand performance across different metrics</li>
+        <li>Consider running distillation if not already completed to maximize deduplication benefits</li>
+        <li>Evaluate integration with your existing RAG pipeline for production deployment</li>
+        <li>Contact your Blockify<sup>&reg;</sup> representative for enterprise licensing options</li>
+    </ul>
+</div>

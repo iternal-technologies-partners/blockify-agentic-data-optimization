@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blockify-distillation-service"
+version = "0.1.0"
+description = "Deduplication and merging service for IdeaBlocks"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Iternal Technologies", email = "dev@iternal.ai"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "httpx>=0.26.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.4.0",
+    "faiss-cpu>=1.7.4",
+    "networkx>=3.2",
+    "sqlalchemy>=2.0.0",
+    "structlog>=24.1.0",
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.1.0",
+    "black>=24.1.0",
+    "mypy>=1.8.0",
+]
+observability = [
+    "prometheus-client>=0.19.0",
+    "opentelemetry-api>=1.22.0",
+    "opentelemetry-sdk>=1.22.0",
+    "opentelemetry-exporter-otlp>=1.22.0",
+]
+
+[project.scripts]
+blockify-distill = "app.api:main"
+
+[project.urls]
+Homepage = "https://github.com/iternal-technologies-partners/blockify-agentic-data-optimization/blockify-distillation-service"
+Documentation = "https://github.com/iternal-technologies-partners/blockify-agentic-data-optimization/blockify-distillation-service#readme"
+Repository = "https://github.com/iternal-technologies-partners/blockify-agentic-data-optimization/blockify-distillation-service"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

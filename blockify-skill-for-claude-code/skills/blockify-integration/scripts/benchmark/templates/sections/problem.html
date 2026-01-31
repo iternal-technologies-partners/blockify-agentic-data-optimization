@@ -1,0 +1,43 @@
+<div class="section">
+    <h3 class="section-title">The Problem with Traditional Chunking</h3>
+
+    <p>
+        Traditional RAG systems face several critical challenges that limit their effectiveness:
+    </p>
+
+    <h4>1. Semantic Fragmentation</h4>
+    <p>
+        Fixed-size chunking arbitrarily splits text without regard for meaning. A 1,000-character
+        chunk may cut a sentence mid-word, separate a question from its answer, or combine
+        unrelated paragraphs. This fragmentation confuses vector embeddings and reduces
+        search accuracy.
+    </p>
+
+    <h4>2. Context Loss</h4>
+    <p>
+        When chunks are created in isolation, they lose the surrounding context that gives them
+        meaning. A chunk describing "the system" provides no value if the reader doesn't know
+        which system is being referenced.
+    </p>
+
+    <h4>3. Redundancy Explosion</h4>
+    <p>
+        Enterprise documents often contain the same information repeated across multiple files,
+        versions, and formats. Traditional chunking preserves all this redundancy, creating
+        massive vector databases full of duplicate content that:
+    </p>
+    <ul>
+        <li>Increases storage and compute costs</li>
+        <li>Slows down vector search</li>
+        <li>Returns redundant results to users</li>
+        <li>Wastes LLM context window tokens</li>
+    </ul>
+
+    <h4>4. Low Precision Retrieval</h4>
+    <p>
+        Because chunks often contain partial or mixed information, vector search frequently
+        returns "close but not quite right" results. Users must sift through multiple chunks
+        to piece together complete answers, and LLMs must process more context to find
+        relevant information.
+    </p>
+</div>

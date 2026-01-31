@@ -1,0 +1,16 @@
+# Blockify Integration Dependencies
+# Install: pip install -r requirements.txt
+
+# Core dependencies
+requests>=2.31.0        # Blockify API calls
+chromadb>=0.4.22        # Local vector database
+openai>=1.12.0          # Embeddings (text-embedding-3-small)
+
+# Benchmark dependencies
+jinja2>=3.1.0           # HTML report templating
+matplotlib>=3.7.0       # Chart generation
+pyyaml>=6.0             # Configuration file parsing
+numpy>=1.24.0           # Efficient vector operations
+
+# Optional: for faster similarity search at scale
+# faiss-cpu>=1.7.4      # Uncomment for 100k+ blocks

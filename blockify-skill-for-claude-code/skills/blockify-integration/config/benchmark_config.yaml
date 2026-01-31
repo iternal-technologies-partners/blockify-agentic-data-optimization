@@ -1,0 +1,73 @@
+# Blockify Benchmark Configuration
+# ================================
+#
+# This file configures the benchmark comparison between Blockify IdeaBlocks
+# and traditional text chunking methods.
+#
+# Usage:
+#   python scripts/run_benchmark.py
+#   python scripts/run_benchmark.py --config ./config/benchmark_config.yaml
+#
+# For more information, see BENCHMARK-GUIDE.md
+
+# Company/Organization name for report header
+company_name: "Your Company"
+
+# Number of annual user queries for token cost projections
+# This affects cost savings calculations in the report
+number_of_user_queries: 1000
+
+# Enterprise data duplication factor (industry standard: 15x)
+# Based on IDC research showing 8:1 to 22:1 duplication in enterprise data
+enterprise_dup_factor: 15
+
+# Token cost per million tokens INPUT (USD) - adjust for your LLM provider
+# Common values:
+#   - LLAMA 3.3 70B: $0.72 (default)
+#   - Claude 4.5 Opus: $5.00
+token_cost_per_million: 5.00
+
+# Embedding configuration
+embedding:
+  # OpenAI embedding model to use
+  model: "text-embedding-3-small"
+  # Number of texts to embed per API call
+  batch_size: 100
+  # Embedding dimensions (1536 for text-embedding-3-small)
+  dimensions: 1536
+
+# Chunking configuration (for traditional chunking comparison)
+chunking:
+  # Maximum characters per chunk
+  max_chars: 2000
+  # Overlap between consecutive chunks
+  overlap: 200
+
+# Output configuration
+output:
+  # Directory to save reports
+  report_dir: "./data/reports"
+  # Filename format (supports {timestamp} placeholder)
+  filename_format: "benchmark_report_{timestamp}.html"
+  # Also save JSON metrics alongside HTML report
+  include_json_metrics: true
+
+# Report sections to include (all enabled by default)
+# Set any to false to exclude from the generated report
+report_sections:
+  header: true
+  report_title: true
+  overview: true
+  metrics: true
+  executive_summary: true
+  data_samples: true
+  introduction: true
+  problem: true
+  solution: true
+  benchmark_results: true
+  accuracy_chart: true
+  word_frequency: true
+  calculator: true
+  terminology: true
+  benefits: true
+  footer: true

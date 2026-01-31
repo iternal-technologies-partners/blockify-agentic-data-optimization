@@ -1,0 +1,82 @@
+<div class="section">
+    <h3 class="section-title">Methodology and Calculations</h3>
+
+    <h4>Vector Accuracy Improvement Calculation</h4>
+    <p>
+        The vector accuracy improvement is calculated by comparing the cosine distance between
+        queries and their best-matching results for both traditional chunks and Blockify<sup>&reg;</sup> IdeaBlocks.
+    </p>
+
+    <div class="executive-summary" style="font-family: monospace; font-size: 14px;">
+        <strong>Formula:</strong><br><br>
+        Vector Improvement = Avg Chunk Distance / Avg Distilled Distance<br><br>
+        Where:<br>
+        - Chunk Distance = Average cosine distance from queries to best-matching chunks<br>
+        - Distilled Distance = Average cosine distance from queries to best-matching IdeaBlocks<br><br>
+
+        <strong>This Benchmark:</strong><br>
+        Vector Improvement = {{ "%.6f"|format(metrics.avg_chunk_distance|default(0)) }} / {{ "%.6f"|format(metrics.avg_distilled_distance|default(0)) }} = <span class="improvement-positive">{{ metrics.vector_improvement|format_decimal(2) }}X</span>
+    </div>
+
+    <h4>Why Cosine Distance?</h4>
+    <p>
+        Cosine distance measures the angular difference between two vectors, making it ideal for
+        comparing semantic similarity in embedding space. A lower distance indicates higher similarity.
+    </p>
+    <ul>
+        <li><strong>Distance = 0:</strong> Vectors are identical (perfect match)</li>
+        <li><strong>Distance = 1:</strong> Vectors are orthogonal (unrelated)</li>
+        <li><strong>Distance = 2:</strong> Vectors are opposite (contradictory)</li>
+    </ul>
+
+    <h4>Aggregate Performance Calculation</h4>
+    <div class="executive-summary" style="font-family: monospace; font-size: 14px;">
+        <strong>Formula:</strong><br><br>
+        Aggregate Performance = Vector Improvement x Word Improvement<br><br>
+
+        <strong>This Benchmark:</strong><br>
+        Aggregate Performance = {{ metrics.vector_improvement|format_decimal(2) }} x {{ metrics.word_improvement|format_decimal(2) }} = <span class="improvement-positive">{{ metrics.aggregate_performance|format_decimal(2) }}X</span>
+    </div>
+
+    <h4>Enterprise Performance Projection</h4>
+    <p>
+        Enterprise environments typically exhibit significant data duplication across departments,
+        document versions, and systems. Industry research (IDC) indicates duplication ratios of
+        8:1 to 22:1 in enterprise data stores. We use a conservative factor of {{ config.enterprise_dup_factor }}X.
+    </p>
+
+    <div class="executive-summary" style="font-family: monospace; font-size: 14px;">
+        <strong>Formula:</strong><br><br>
+        Enterprise Performance = Aggregate Performance x Enterprise Duplication Factor<br><br>
+
+        <strong>This Benchmark:</strong><br>
+        Enterprise Performance = {{ metrics.aggregate_performance|format_decimal(2) }} x {{ config.enterprise_dup_factor }} = <span class="improvement-positive">{{ metrics.enterprise_performance|format_decimal(2) }}X</span>
+    </div>
+
+    <h4>Token Cost Calculation</h4>
+    <div class="executive-summary" style="font-family: monospace; font-size: 14px;">
+        <strong>Formula:</strong><br><br>
+        Annual Tokens = Tokens per Item x User Queries x Results per Query<br>
+        Cost Savings = (Chunk Tokens - Block Tokens) x Price per Million / 1,000,000<br><br>
+
+        <strong>Parameters:</strong><br>
+        - Character to Token Ratio: 4:1<br>
+        - Results per Query: 5<br>
+        - Token Price: {{ config.token_cost_per_million|format_currency }} per million<br>
+        - Annual Queries: {{ config.number_of_user_queries|format_number }}<br><br>
+
+        <strong>This Benchmark:</strong><br>
+        Cost Savings = ({{ metrics.annual_chunk_tokens|format_number }} - {{ metrics.annual_distilled_tokens|format_number }}) x {{ config.token_cost_per_million }} / 1,000,000 = <span class="improvement-positive">{{ metrics.cost_savings_per_year|format_currency }}/year</span>
+    </div>
+
+    <h4>Benchmark Conditions</h4>
+    <p>
+        This benchmark uses conservative methodology to ensure fair comparison:
+    </p>
+    <ul>
+        <li><strong>Same embedding model</strong> (text-embedding-3-small) for all content types</li>
+        <li><strong>Same distance metric</strong> (cosine similarity) for all comparisons</li>
+        <li><strong>Queries extracted from IdeaBlocks</strong> (critical questions) to ensure relevance</li>
+        <li><strong>Best-match selection</strong> (minimum distance) for each query</li>
+    </ul>
+</div>

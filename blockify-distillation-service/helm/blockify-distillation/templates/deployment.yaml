@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "blockify-distillation.fullname" . }}
+  labels:
+    {{- include "blockify-distillation.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "blockify-distillation.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "blockify-distillation.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "blockify-distillation.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8315
+              protocol: TCP
+          env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "8315"
+            - name: LOG_LEVEL
+              value: {{ .Values.config.logLevel | quote }}
+            - name: DATABASE_BACKEND
+              value: {{ .Values.config.databaseBackend | quote }}
+            - name: DATABASE_URL
+              value: {{ .Values.config.databaseUrl | quote }}
+            - name: DATA_DIR
+              value: "/app/data"
+            - name: JOB_RETENTION_ENABLED
+              value: {{ .Values.config.jobRetentionEnabled | quote }}
+            - name: JOB_RETENTION_DAYS
+              value: {{ .Values.config.jobRetentionDays | quote }}
+            - name: MAX_WORKERS
+              value: {{ .Values.config.maxWorkers | quote }}
+            - name: JOB_TIMEOUT_SECONDS
+              value: {{ .Values.config.jobTimeoutSeconds | quote }}
+            - name: MAX_CLUSTER_SIZE_FOR_LLM
+              value: {{ .Values.config.maxClusterSizeForLlm | quote }}
+            - name: LLM_PARALLEL_THREADS
+              value: {{ .Values.config.llmParallelThreads | quote }}
+            - name: USE_LSH
+              value: {{ .Values.config.useLsh | quote }}
+            - name: PROMETHEUS_ENABLED
+              value: {{ .Values.config.prometheusEnabled | quote }}
+            - name: OTLP_ENABLED
+              value: {{ .Values.config.otlpEnabled | quote }}
+            {{- if .Values.config.otlpEndpoint }}
+            - name: OTLP_ENDPOINT
+              value: {{ .Values.config.otlpEndpoint | quote }}
+            {{- end }}
+            # API Keys from secret
+            {{- if .Values.secrets.existingSecret }}
+            - name: BLOCKIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.existingSecret }}
+                  key: BLOCKIFY_API_KEY
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.existingSecret }}
+                  key: OPENAI_API_KEY
+            {{- else }}
+            - name: BLOCKIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "blockify-distillation.fullname" . }}-secrets
+                  key: BLOCKIFY_API_KEY
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "blockify-distillation.fullname" . }}-secrets
+                  key: OPENAI_API_KEY
+            {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "blockify-distillation.fullname" . }}-data
+      {{- end }}

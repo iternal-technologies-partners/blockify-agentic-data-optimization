@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }} - Blockify Performance Analysis Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        {% include "styles.css" %}
+    </style>
+</head>
+<body>
+    {% if sections.header %}
+    {% include "sections/header.html" %}
+    {% endif %}
+
+    <div class="container">
+        <div class="main-content">
+            {% if sections.report_title %}
+            {% include "sections/report_title.html" %}
+            {% endif %}
+
+            {% if sections.overview %}
+            {% include "sections/overview.html" %}
+            {% endif %}
+
+            {% if sections.metrics %}
+            {% include "sections/metrics.html" %}
+            {% endif %}
+
+            {% if sections.executive_summary %}
+            {% include "sections/executive_summary.html" %}
+            {% endif %}
+
+            {% if sections.data_samples %}
+            {% include "sections/data_samples.html" %}
+            {% endif %}
+
+            {% if sections.introduction %}
+            {% include "sections/introduction.html" %}
+            {% endif %}
+
+            {% if sections.problem %}
+            {% include "sections/problem.html" %}
+            {% endif %}
+
+            {% if sections.solution %}
+            {% include "sections/solution.html" %}
+            {% endif %}
+
+            {% if sections.benchmark_results %}
+            {% include "sections/benchmark_results.html" %}
+            {% endif %}
+
+            {% if sections.accuracy_chart %}
+            {% include "sections/accuracy_chart.html" %}
+            {% endif %}
+
+            {% if sections.word_frequency %}
+            {% include "sections/word_frequency.html" %}
+            {% endif %}
+
+            {% if sections.calculator %}
+            {% include "sections/calculator.html" %}
+            {% endif %}
+
+            {% if sections.terminology %}
+            {% include "sections/terminology.html" %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if sections.benefits %}
+    <div class="container">
+        {% include "sections/benefits.html" %}
+    </div>
+    {% endif %}
+
+    {% if sections.footer %}
+    {% include "sections/footer.html" %}
+    {% endif %}
+</body>
+</html>

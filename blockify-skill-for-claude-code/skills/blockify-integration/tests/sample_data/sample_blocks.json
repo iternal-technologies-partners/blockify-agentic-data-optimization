@@ -1,0 +1,35 @@
+{
+  "description": "Sample IdeaBlock data for benchmark testing",
+  "blocks": [
+    {
+      "id": "ib_test001",
+      "name": "Product Overview",
+      "critical_question": "What is Blockify and what does it do?",
+      "trusted_answer": "Blockify is a patented knowledge distillation platform that transforms unstructured documents into semantically complete, self-contained units called IdeaBlocks for optimized AI retrieval.",
+      "source_document": "product_guide.md",
+      "source_chunk_text": "Blockify is a revolutionary platform for knowledge management. It uses advanced AI to extract semantic meaning from documents and create optimized knowledge units.",
+      "source_chunk_index": 0,
+      "source_chunk_hash": "abc123def456"
+    },
+    {
+      "id": "ib_test002",
+      "name": "IdeaBlock Structure",
+      "critical_question": "What are the components of an IdeaBlock?",
+      "trusted_answer": "An IdeaBlock consists of three main components: a descriptive name, a critical question that the block answers, and a trusted answer that provides a complete, validated response.",
+      "source_document": "product_guide.md",
+      "source_chunk_text": "Each IdeaBlock contains structured fields including a name, question, and answer. These components work together to provide semantic completeness.",
+      "source_chunk_index": 1,
+      "source_chunk_hash": "def456ghi789"
+    },
+    {
+      "id": "ib_test003",
+      "name": "Vector Search Benefits",
+      "critical_question": "How does Blockify improve vector search accuracy?",
+      "trusted_answer": "Blockify improves vector search accuracy by ensuring each IdeaBlock is semantically complete and self-contained, making embeddings more precise and reducing the likelihood of partial or irrelevant matches.",
+      "source_document": "technical_overview.md",
+      "source_chunk_text": "Traditional chunking often splits semantic units arbitrarily. Blockify addresses this by creating complete knowledge units that embed more accurately in vector space.",
+      "source_chunk_index": 0,
+      "source_chunk_hash": "ghi789jkl012"
+    }
+  ]
+}

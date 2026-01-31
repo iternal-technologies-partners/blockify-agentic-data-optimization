@@ -1,0 +1,196 @@
+<div class="section">
+    <h3 class="section-title">Enterprise Impact for {{ company_name }}</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Enterprise Performance Improvement (Higher X = Better)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Enterprise Aggregate Performance</td>
+                <td class="improvement-positive" style="color: rgb(20, 139, 13);">{{ metrics.enterprise_performance|format_decimal(2) }}X Combined Improvement via Blockify</td>
+            </tr>
+            <tr>
+                <td>Enterprise Duplication Reduction by Word Count</td>
+                <td class="improvement-positive" style="color: rgb(20, 139, 13);">{{ (metrics.word_improvement * config.enterprise_dup_factor)|format_decimal(2) }}X Enterprise Performance Improvement via Blockify</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Base Impact of Blockify<sup>&reg;</sup> Accuracy for {{ company_name }}</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Base Performance Improvement (Higher X = Better)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aggregate Performance (Vector Accuracy x Word Count Reduction)</td>
+                <td class="improvement-positive">{{ metrics.aggregate_performance|format_decimal(2) }}X Combined Improvement via Blockify</td>
+            </tr>
+            <tr>
+                <td>Vector Accuracy Improvement (Blockify<sup>&reg;</sup> Distilled vs Legacy RAG)</td>
+                <td class="improvement-positive">{{ metrics.vector_improvement|format_decimal(2) }}X Improvement via Blockify</td>
+            </tr>
+            <tr>
+                <td>Duplication Reduction by Word Count (Blockify<sup>&reg;</sup> Distilled vs Legacy RAG)</td>
+                <td class="improvement-positive">{{ metrics.word_improvement|format_decimal(2) }}X Improvement via Blockify</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Detailed Vector Search Accuracy Results</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Blockify<sup>&reg;</sup></th>
+                <th>Traditional Chunking</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Number of Items</td>
+                <td>{{ counts.distilled_blocks|format_number }} IdeaBlocks</td>
+                <td>{{ counts.chunks|format_number }} Chunks</td>
+            </tr>
+            <tr>
+                <td>Undistilled IdeaBlocks</td>
+                <td>{{ counts.undistilled_blocks|format_number }}</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Average Distance to Best Match</td>
+                <td>{{ "%.10f"|format(metrics.avg_distilled_distance|default(0)) }}</td>
+                <td>{{ "%.10f"|format(metrics.avg_chunk_distance|default(0)) }}</td>
+            </tr>
+            <tr>
+                <td>Queries Used in Benchmark</td>
+                <td colspan="2" style="text-align: center;">{{ counts.queries|format_number }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Text Analysis for {{ company_name }}</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Raw Document Input</th>
+                <th>IdeaBlocks Undistilled</th>
+                <th>IdeaBlocks Distilled</th>
+                <th>Improvement Factor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Number of Words</td>
+                <td>{{ text_statistics.document.word_count|format_number }}</td>
+                <td>{{ text_statistics.undistilled.word_count|format_number }}</td>
+                <td>{{ text_statistics.distilled.word_count|format_number }}</td>
+                <td class="improvement-positive">{{ metrics.word_improvement|format_decimal(2) }}X</td>
+            </tr>
+            <tr>
+                <td>Number of Characters</td>
+                <td>{{ text_statistics.document.char_count|format_number }}</td>
+                <td>{{ text_statistics.undistilled.char_count|format_number }}</td>
+                <td>{{ text_statistics.distilled.char_count|format_number }}</td>
+                <td class="improvement-positive">{{ metrics.char_improvement|format_decimal(2) }}X</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Token Usage Analysis</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Traditional Chunking</th>
+                <th>IdeaBlocks Undistilled</th>
+                <th>IdeaBlocks Distilled</th>
+                <th>Improvement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Avg Tokens per Item</td>
+                <td>~{{ metrics.tokens_per_chunk|format_number }} tokens/chunk</td>
+                <td>~{{ metrics.tokens_per_undistilled|format_number }} tokens/block</td>
+                <td>~{{ metrics.tokens_per_distilled|format_number }} tokens/block</td>
+                <td class="improvement-positive">{{ metrics.token_improvement|format_decimal(2) }}X</td>
+            </tr>
+            <tr>
+                <td>Est. Tokens per Year ({{ config.number_of_user_queries|format_number }} queries)</td>
+                <td>~{{ metrics.annual_chunk_tokens|format_number }}</td>
+                <td>~{{ metrics.annual_undistilled_tokens|format_number }}</td>
+                <td>~{{ metrics.annual_distilled_tokens|format_number }}</td>
+                <td class="improvement-positive">{{ metrics.token_improvement|format_decimal(2) }}X</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="note">
+        Token estimates are calculated based on a character-to-token ratio of 4:1 and
+        {{ config.number_of_user_queries|format_number }} annual user queries, assuming top 5 results per query.
+    </p>
+
+    <div class="section-content">
+        <h4>Token Efficiency Impact on Enterprise GenAI Systems</h4>
+        <p>
+            One of the most significant operational advantages Blockify<sup>&reg;</sup> brings to enterprise
+            GenAI systems is dramatic token count reduction per query. Traditional chunking requires the LLM
+            to process an average of <strong>{{ (metrics.tokens_per_chunk * 5)|format_number }} tokens per query</strong>
+            as it must absorb multiple, often repetitive or semantically fragmented, chunks.
+        </p>
+        <p>
+            In contrast, Blockify<sup>&reg;</sup> distillation yields highly specific, semantically-complete IdeaBlocks.
+            <span class="improvement-positive">
+                Blockify reduces the average context window to approximately
+                <strong>{{ (metrics.tokens_per_distilled * 5)|format_number }} tokens per query</strong>
+            </span>
+            (assuming top 5 results). This <strong>{{ metrics.token_improvement|format_decimal(2) }}X reduction</strong>
+            drives profound downstream benefits in cost, compute, and latency.
+        </p>
+
+        <h4>Cost Savings</h4>
+        <p>
+            At {{ config.token_cost_per_million|format_currency }} per million tokens, the
+            {{ metrics.token_improvement|format_decimal(2) }}X reduction translates to estimated annual savings of
+            <span class="improvement-positive"><strong>{{ metrics.cost_savings_per_year|format_currency }}</strong></span>.
+        </p>
+
+        <h4>Compute Savings</h4>
+        <p>
+            By reducing per-query token usage, Blockify<sup>&reg;</sup>:
+        </p>
+        <ul>
+            <li><strong>Lowers compute resource requirements</strong> per query</li>
+            <li><strong>Enables higher query throughput</strong> without additional infrastructure</li>
+            <li><strong>Facilitates cost-effective scaling</strong> during peak demand</li>
+        </ul>
+
+        <h4>Latency Improvements</h4>
+        <p>
+            Token reduction translates directly into lower end-to-end latency. LLM inference time correlates
+            closely with context tokens processed. A <strong>{{ metrics.token_improvement|format_decimal(2) }}X reduction</strong>
+            in input tokens yields proportionally faster response times.
+        </p>
+    </div>
+</div>

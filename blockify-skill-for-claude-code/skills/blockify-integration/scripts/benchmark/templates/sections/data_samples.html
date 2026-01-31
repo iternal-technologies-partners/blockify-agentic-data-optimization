@@ -1,0 +1,57 @@
+<div class="section">
+    <h3 class="section-title">Sample Query Comparisons</h3>
+
+    <p>
+        Below are sample comparisons showing how Blockify<sup>&reg;</sup> IdeaBlocks provide more accurate
+        and relevant results compared to traditional text chunking for the same queries.
+    </p>
+
+    {% for i in range(queries|length) %}
+    {% if i < 3 %}
+    <div class="comparison-group">
+        <div class="query-display">
+            <i class="fas fa-search" style="margin-right: 8px;"></i>
+            Query: "{{ queries[i][:200] }}{% if queries[i]|length > 200 %}...{% endif %}"
+        </div>
+
+        <div class="comparison-cards-wrapper">
+            <!-- Chunk Result -->
+            <div class="card-container">
+                <div class="card-title" style="color: #8b0000;">
+                    <i class="fas fa-cut"></i> Traditional Chunk
+                </div>
+                <div class="card raw">
+                    <div class="chunk-text">
+                        {% if chunk_matches[i] %}
+                        {{ chunk_matches[i].text[:500] if chunk_matches[i].text else 'No match found' }}{% if chunk_matches[i].text and chunk_matches[i].text|length > 500 %}...{% endif %}
+                        {% else %}
+                        No chunk data available
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- IdeaBlock Result -->
+            <div class="card-container">
+                <div class="card-title" style="color: #008b53;">
+                    <i class="fas fa-cube"></i> Blockify<sup>&reg;</sup> IdeaBlock
+                </div>
+                <div class="card trusted">
+                    {% if distilled_matches[i] %}
+                    <div class="title">{{ distilled_matches[i].name[:100] if distilled_matches[i].name else '' }}{% if distilled_matches[i].name and distilled_matches[i].name|length > 100 %}...{% endif %}</div>
+                    <div class="question">{{ distilled_matches[i].critical_question[:150] if distilled_matches[i].critical_question else '' }}{% if distilled_matches[i].critical_question and distilled_matches[i].critical_question|length > 150 %}...{% endif %}</div>
+                    <div class="answer">{{ distilled_matches[i].trusted_answer[:300] if distilled_matches[i].trusted_answer else '' }}{% if distilled_matches[i].trusted_answer and distilled_matches[i].trusted_answer|length > 300 %}...{% endif %}</div>
+                    {% else %}
+                    <div class="answer">No block data available</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% if queries|length == 0 %}
+    <p class="note">No sample queries available for display.</p>
+    {% endif %}
+</div>

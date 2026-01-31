@@ -1,0 +1,34 @@
+<div class="section">
+    <h3 class="section-title">Vector Search Accuracy Comparison</h3>
+
+    <p>
+        The following chart visualizes the vector search accuracy comparison between traditional
+        chunking and Blockify<sup>&reg;</sup> IdeaBlocks. Higher accuracy indicates that the
+        retrieved content is more semantically similar to the query.
+    </p>
+
+    <div class="chart-container">
+        <img src="{{ charts.accuracy }}" alt="Accuracy Comparison Chart">
+    </div>
+
+    <p>
+        <strong>How to read this chart:</strong> Accuracy is calculated as (1 - cosine distance).
+        A higher value indicates that the best-matching result is more semantically similar to the query.
+        Blockify<sup>&reg;</sup> IdeaBlocks consistently return more accurate matches due to their
+        semantic completeness.
+    </p>
+</div>
+
+<div class="section">
+    <h3 class="section-title">Performance Improvements Overview</h3>
+
+    <div class="chart-container">
+        <img src="{{ charts.performance }}" alt="Performance Improvements Chart">
+    </div>
+
+    <p>
+        This chart shows the improvement factors across different metrics. The Enterprise Performance
+        includes the {{ config.enterprise_dup_factor }}X enterprise data duplication factor, reflecting
+        the additional benefits from deduplication at enterprise scale.
+    </p>
+</div>

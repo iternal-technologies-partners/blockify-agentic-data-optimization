@@ -1,0 +1,149 @@
+# Blockify Distillation Service - Helm Values
+# Override these values in your own values.yaml or via --set
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/iternal-technologies-partners/blockify-distillation-service
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: false  # Needs write for SQLite
+
+service:
+  type: ClusterIP
+  port: 8315
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: distill.example.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: distill-tls
+  #    hosts:
+  #      - distill.example.com
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Persistence for SQLite database
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  annotations: {}
+
+# API Keys (create a secret and reference it)
+secrets:
+  # Name of existing secret containing API keys
+  # Secret should have keys: BLOCKIFY_API_KEY, OPENAI_API_KEY
+  existingSecret: ""
+  # If not using existing secret, create one with these values
+  blockifyApiKey: ""
+  openaiApiKey: ""
+
+# Configuration
+config:
+  # Server
+  logLevel: INFO
+
+  # Database
+  databaseBackend: sqlite
+  databaseUrl: "sqlite:///./data/jobs.db"
+
+  # Job retention (disabled by default)
+  jobRetentionEnabled: false
+  jobRetentionDays: 30
+
+  # Workers
+  maxWorkers: 5
+  jobTimeoutSeconds: 600000
+
+  # Algorithm
+  maxClusterSizeForLlm: 20
+  llmParallelThreads: 5
+  useLsh: true
+
+  # Observability
+  prometheusEnabled: true
+  otlpEnabled: false
+  otlpEndpoint: ""
+
+# Prometheus ServiceMonitor (requires prometheus-operator)
+serviceMonitor:
+  enabled: false
+  interval: 30s
+  labels: {}
+
+# Pod disruption budget
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+  # maxUnavailable: 1
+
+# Health probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
