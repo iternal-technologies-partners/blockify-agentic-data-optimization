@@ -131,4 +131,4 @@ Blockify EULA - See [LICENSE](LICENSE) for details.
 
 - [Blockify Platform](https://blockify.ai/signup)
 - [API Documentation](https://console.blockify.ai)
-- [Distillation Service](./blockify-distillation-service)
+- [Distillation Service](../blockify-distillation-service/)

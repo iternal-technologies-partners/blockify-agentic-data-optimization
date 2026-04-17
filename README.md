@@ -1,5 +1,7 @@
 # Blockify Insights Documentation
 
+Sign up for Blockify Enterprise and receive $1,000 in free Blockify Token Credits: [console.blockify.ai/signup](https://console.blockify.ai/signup)
+
 **Purpose:** Comprehensive technical documentation for engineers integrating Blockify with Claude Code, Clawdbot, and RAG systems.
 
 **Created:** 2026-01-25
@@ -11,16 +13,16 @@
 
 | Document | Description | Audience |
 |----------|-------------|----------|
-| [BLOCKIFY-DEEP-DIVE.md](./BLOCKIFY-DEEP-DIVE.md) | Complete technical understanding of Blockify | All Engineers |
-| [IDEABLOCK-STRUCTURE.md](./IDEABLOCK-STRUCTURE.md) | IdeaBlock XML format specification | Data Engineers |
-| [BLOCKIFY-API-REFERENCE.md](./BLOCKIFY-API-REFERENCE.md) | API documentation with examples | Backend Engineers |
-| [LOCAL-VECTOR-DATABASE-SETUP.md](./LOCAL-VECTOR-DATABASE-SETUP.md) | ChromaDB setup for 100k+ blocks | DevOps/Data Engineers |
-| [DISTILLATION-SERVICE.md](./DISTILLATION-SERVICE.md) | Auto-dedupe server for large-scale deduplication | Platform Engineers |
-| [CLAUDE-CODE-BLOCKIFY-SKILL.md](./CLAUDE-CODE-BLOCKIFY-SKILL.md) | Claude Code skill for Blockify integration | Claude Code Users |
-| [ARCHITECTURE-END-TO-END.md](./ARCHITECTURE-END-TO-END.md) | Complete integration architecture | Architects |
-| [CLAWDBOT-RAG-INTEGRATION.md](./CLAWDBOT-RAG-INTEGRATION.md) | Clawdbot + Blockify RAG implementation | Full-Stack Engineers |
-| [GETTING-STARTED-GUIDE.md](./GETTING-STARTED-GUIDE.md) | Step-by-step setup for any skill level | All Engineers |
-| [RAG-AGENTIC-SEARCH-RESEARCH.md](./RAG-AGENTIC-SEARCH-RESEARCH.md) | RAG architecture patterns research | All Engineers |
+| [BLOCKIFY-DEEP-DIVE.md](./documentation/BLOCKIFY-DEEP-DIVE.md) | Complete technical understanding of Blockify | All Engineers |
+| [IDEABLOCK-STRUCTURE.md](./documentation/IDEABLOCK-STRUCTURE.md) | IdeaBlock XML format specification | Data Engineers |
+| [BLOCKIFY-API-REFERENCE.md](./documentation/BLOCKIFY-API-REFERENCE.md) | API documentation with examples | Backend Engineers |
+| [LOCAL-VECTOR-DATABASE-SETUP.md](./documentation/LOCAL-VECTOR-DATABASE-SETUP.md) | ChromaDB setup for 100k+ blocks | DevOps/Data Engineers |
+| [DISTILLATION-SERVICE.md](./documentation/DISTILLATION-SERVICE.md) | Auto-dedupe server for large-scale deduplication | Platform Engineers |
+| [CLAUDE-CODE-BLOCKIFY-SKILL.md](./documentation/CLAUDE-CODE-BLOCKIFY-SKILL.md) | Claude Code skill for Blockify integration | Claude Code Users |
+| [ARCHITECTURE-END-TO-END.md](./documentation/ARCHITECTURE-END-TO-END.md) | Complete integration architecture | Architects |
+| [CLAWDBOT-RAG-INTEGRATION.md](./documentation/CLAWDBOT-RAG-INTEGRATION.md) | Clawdbot + Blockify RAG implementation | Full-Stack Engineers |
+| [GETTING-STARTED-GUIDE.md](./documentation/GETTING-STARTED-GUIDE.md) | Step-by-step setup for any skill level | All Engineers |
+| [RAG-AGENTIC-SEARCH-RESEARCH.md](./documentation/RAG-AGENTIC-SEARCH-RESEARCH.md) | RAG architecture patterns research | All Engineers |
 
 ---
 
@@ -68,7 +70,7 @@ curl --location 'https://api.blockify.ai/v1/chat/completions' \
 
 ### For Claude Code
 
-Use the Claude Code skill at `skills/blockify-integration/SKILL.md` to:
+Use the Claude Code skill in [blockify-skill-for-claude-code](./blockify-skill-for-claude-code/) to:
 - Process project documentation into IdeaBlocks
 - Create optimized knowledge bases for RAG
 - Improve codebase context retrieval
@@ -92,9 +94,9 @@ Blockify sits between document parsing and vector storage:
 
 ## Related Documentation
 
-- `/documentation/RAG-AGENTIC-SEARCH-RESEARCH.md` - RAG architecture research
-- `/src/pages/blockify-results.ts` - Blockify results page implementation
-- `/src/pages/blockify.ts` - Blockify product page
+- [RAG-AGENTIC-SEARCH-RESEARCH.md](./documentation/RAG-AGENTIC-SEARCH-RESEARCH.md) - RAG architecture research
+- [blockify-distillation-service](./blockify-distillation-service/) - Distillation service implementation
+- [blockify-skill-for-claude-code](./blockify-skill-for-claude-code/) - Claude Code skill package
 
 ---
 

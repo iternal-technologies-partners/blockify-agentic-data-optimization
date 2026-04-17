@@ -162,14 +162,14 @@ helm install distill ./helm/blockify-distillation \
 
 ## License
 
-Blockify EULA - See [LICENSE](LICENSE) for details.
+Blockify EULA - See [LICENSE](../LICENSE) for details.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See the repository contribution guidelines in the project root before submitting changes.
 
 ## Links
 
 - [Blockify](https://blockify.ai/signup) - Knowledge management platform
 - [API Documentation](https://console.blockify.ai) - Blockify API docs
-- [Claude Code Skill](./blockify-skill-for-claude-code) - Integration with Claude Code
+- [Claude Code Skill](../blockify-skill-for-claude-code/) - Integration with Claude Code
