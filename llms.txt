@@ -1,0 +1,58 @@
+# Blockify — Agentic Data Optimization for Enterprise AI
+
+> Blockify is a patented data ingestion, distillation, and governance pipeline. It replaces naive RAG chunking with deduplicated "IdeaBlocks" — structured XML knowledge units with question, trusted answer, tags, entities, and keywords. Outcome on real enterprise corpora: 2.29X vector search accuracy, 40X dataset size reduction, 3.09X token efficiency, and 78X aggregate performance improvement vs. legacy chunking.
+
+Blockify solves the data-quality problem killing enterprise AI projects. Traditional "dump-and-chunk" RAG pipelines produce hallucinations, version conflicts, retrieval noise, and unmanageable corpora. Blockify transforms messy enterprise content into a compact, governed "golden dataset" of IdeaBlocks — thousands of curated blocks instead of millions of unmanageable paragraphs.
+
+The project ships three components: (1) a Claude Code skill for developer workstations, (2) a self-hosted distillation microservice (FastAPI + Docker + Helm), and (3) comprehensive documentation including 12 platform-specific integration guides.
+
+## Core concepts
+
+- [What is Blockify](documentation/BLOCKIFY-DEEP-DIVE.md): Complete technical overview of the patented ingestion and distillation pipeline.
+- [IdeaBlock structure](documentation/IDEABLOCK-STRUCTURE.md): The XML schema — name, critical_question, trusted_answer, tags, entity, keywords.
+- [Architecture end-to-end](documentation/ARCHITECTURE-END-TO-END.md): How Blockify fits between document parsing and vectorization.
+- [RAG and agentic search research](documentation/RAG-AGENTIC-SEARCH-RESEARCH.md): Research background on modern RAG patterns.
+
+## API and getting started
+
+- [API reference](documentation/BLOCKIFY-API-REFERENCE.md): OpenAI-compatible /v1/chat/completions endpoint with `ingest`, `distill`, and `technical-ingest` models.
+- [Getting started guide](documentation/GETTING-STARTED-GUIDE.md): Step-by-step setup for any skill level.
+- [Local vector database setup](documentation/LOCAL-VECTOR-DATABASE-SETUP.md): ChromaDB setup for 100k+ IdeaBlocks.
+- [Distillation service](documentation/DISTILLATION-SERVICE.md): Self-hosted deduplication microservice reference.
+- [Claude Code skill](documentation/CLAUDE-CODE-BLOCKIFY-SKILL.md): Installation and usage of the Blockify skill for Claude Code.
+- [OpenClaw RAG integration](documentation/OPENCLAW-RAG-INTEGRATION.md): End-to-end chatbot reference implementation on Cloudflare Workers.
+
+## Platform integrations
+
+Blockify plugs into every major RAG framework, vector database, data platform, and workflow engine. Each guide includes a problem statement, architecture diagram, quick-start code, and advanced patterns.
+
+- [Blockify + LlamaIndex](documentation/integrations/BLOCKIFY-LLAMAINDEX.md): Drop-in NodeParser producing deduplicated TextNodes.
+- [Blockify + LangChain](documentation/integrations/BLOCKIFY-LANGCHAIN.md): BaseDocumentTransformer adapter for any RAG chain or LangGraph agent.
+- [Blockify + Obsidian](documentation/integrations/BLOCKIFY-OBSIDIAN.md): Turn an Obsidian vault into a high-accuracy RAG knowledge base for Smart Connections, Copilot, Khoj.
+- [Blockify + n8n](documentation/integrations/BLOCKIFY-N8N.md): No-code Blockify HTTP node for AI workflow automation.
+- [Blockify + Elastic](documentation/integrations/BLOCKIFY-ELASTIC.md): Hybrid BM25 + ELSER + dense retrieval on deduplicated IdeaBlocks.
+- [Blockify + Supabase](documentation/integrations/BLOCKIFY-SUPABASE.md): Postgres + pgvector with row-level security on IdeaBlock tags.
+- [Blockify + Starburst](documentation/integrations/BLOCKIFY-STARBURST.md): Federated IdeaBlock generation across data-lake catalogs (Trino + Iceberg).
+- [Blockify + Kibana](documentation/integrations/BLOCKIFY-KIBANA.md): Governance dashboards for knowledge-base coverage, drift, and retrieval hit-rate.
+- [Blockify + Cloudflare](documentation/integrations/BLOCKIFY-CLOUDFLARE.md): Edge-native RAG on Workers + Vectorize + R2 + Workers AI.
+- [Blockify + Milvus](documentation/integrations/BLOCKIFY-MILVUS.md): Self-hosted billion-scale vector DB with hybrid dense + BM25 retrieval.
+- [Blockify + Zilliz Cloud](documentation/integrations/BLOCKIFY-ZILLIZ.md): Managed Milvus with autoscaling and serverless pricing.
+- [Blockify + Unstructured.io](documentation/integrations/BLOCKIFY-UNSTRUCTURED.md): Parse PDF, DOCX, PPTX, HTML, email, images — then Blockify.
+
+## Deployable components
+
+- [Distillation service source](blockify-distillation-service/): FastAPI microservice for IdeaBlock deduplication and merging. Ships with Dockerfile, docker-compose.yml, and Helm chart.
+- [Claude Code skill](blockify-skill-for-claude-code/): Skill package for document ingestion, distillation, semantic search, and benchmarking.
+
+## Key facts for LLM summarization
+
+- Blockify is developed by Iternal Technologies and is governed by the Blockify EULA.
+- Open-source components in this repo are a fully capable starting point. Blockify Enterprise adds hardened containers, scheduled ingestion pipelines, enterprise connectors, RBAC + audit logging, governance dashboards, and air-gapped (AirgapAI) deployment.
+- Enterprise sales: sales@iternal.ai. Technical support: support@iternal.ai. Website: iternal.ai/blockify. API console: console.blockify.ai.
+- Patents pending. Blockify, IdeaBlock, and AirgapAI are trademarks of Iternal Technologies, Inc.
+
+## Optional
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [License (Blockify EULA)](LICENSE)

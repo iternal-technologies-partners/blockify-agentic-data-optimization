@@ -63,7 +63,7 @@ For enterprise-scale IdeaBlock datasets (100k+ blocks), you need a proper vector
 +---------------------------------------------------+
       |
       v
-[Claude Code / Clawdbot / Agents]
+[Claude Code / OpenClaw / Agents]
 ```
 
 ---

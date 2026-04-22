@@ -1,3 +1,331 @@
-# License
+Blockify Community License Agreement — Version 1.0
 
-This license is governed by the terms of ```https://iternal.ai/legal/legal-agreements-and-terms/blockify-eula```
+Copyright (c) 2026 Iternal Technologies, Inc. All rights reserved.
+
+Effective Date: April 22, 2026
+
+This Blockify Community License Agreement ("Community License") governs Your
+use of the Blockify Community Materials (defined below). By downloading,
+installing, copying, or using the Community Materials, You ("You," "Your," or
+"Licensee") agree to be bound by this Community License. If You do not agree,
+do not download or use the Community Materials.
+
+
+1. DEFINITIONS
+
+1.1. "Community Materials" means the following components made available by
+Iternal Technologies, Inc. ("Iternal") under this Community License:
+
+  (a) The Blockify Distillation Service source code and Docker containers
+      published in Iternal's public GitHub repositories (currently: the
+      blockify-distillation-service/ directory);
+
+  (b) The Blockify Skill for Claude Code source code and associated scripts,
+      references, and benchmark tooling (currently: the
+      blockify-skill-for-claude-code/ directory);
+
+  (c) Technical documentation published in Iternal's public repositories
+      (currently: the documentation/ directory);
+
+  (d) The IdeaBlock XML schema specification and reference documentation;
+
+  (e) Blockify fine-tuned large language model weights designated as
+      "Community" models, if and when released by Iternal;
+
+  (f) Sample code, tutorials, Helm charts, Docker configurations, and
+      reference implementations published under this license; and
+
+  (g) Any other materials Iternal expressly designates as covered by this
+      Community License.
+
+1.2. "Derivative Work" means any modification, enhancement, fine-tune,
+adaptation, or work based upon the Community Materials, including but not
+limited to fine-tuned model weights, adapted source code, and applications
+that incorporate the Community Materials.
+
+1.3. "Competing Product" means any commercial product or service whose primary
+purpose is data ingestion, chunking optimization, semantic distillation, or
+knowledge-block generation for AI/RAG systems that substantially replicates
+the core functionality of the Blockify platform. For the avoidance of doubt:
+
+  (a) Building AI/RAG applications, chatbots, agents, or search systems that
+      USE IdeaBlocks as input is NOT a Competing Product;
+
+  (b) Building developer tools, integrations, pipelines, or workflows that
+      interface with or extend the Blockify API is NOT a Competing Product;
+
+  (c) Building a commercial product or service whose primary purpose is to
+      replicate Blockify's data distillation and IdeaBlock generation
+      capabilities IS a Competing Product.
+
+1.4. "Revenue Threshold" means One Million United States Dollars
+($1,000,000 USD) in annual gross revenue, calculated as the trailing twelve
+(12) months of consolidated worldwide gross revenue of the Licensee and all
+Affiliates (as defined below).
+
+1.5. "Affiliate" means any entity that directly or indirectly controls, is
+controlled by, or is under common control with the Licensee. "Control" means
+ownership of more than fifty percent (50%) of the voting securities or
+equivalent ownership interest.
+
+1.6. "Enterprise Materials" means the components of Blockify NOT included in
+the Community Materials, including but not limited to: advanced distillation
+algorithms (hierarchical, multi-pass, domain-tuned), automated ingestion
+connectors (SharePoint, Confluence, Drive, S3, Git), enterprise document
+parsers (PDF, DOCX, PPTX, HTML, structured data), role-based access control,
+governance dashboards, content lifecycle management, audit logging, compliance
+tagging, air-gapped deployment (AirgapAI), hardened pre-built production
+containers, SLA-backed support, and any model weights designated as
+"Enterprise" or "Commercial."
+
+
+2. LICENSE GRANT
+
+2.1. Community Use License. Subject to the terms of this Community License,
+Iternal grants You a worldwide, non-exclusive, royalty-free, non-transferable
+(except as set forth in Section 2.5) license to:
+
+  (a) Use, copy, and run the Community Materials for any lawful purpose;
+
+  (b) Create Derivative Works based on the Community Materials;
+
+  (c) Distribute and make available the Community Materials and Derivative
+      Works, subject to the conditions in Section 3; and
+
+  (d) Use the Community Materials and Derivative Works for commercial
+      purposes, subject to the Revenue Threshold in Section 4.
+
+2.2. Research and Academic Use. Notwithstanding any other provision of this
+Community License, use of the Community Materials for non-commercial academic
+research, personal experimentation, or educational purposes is always
+permitted, regardless of the Revenue Threshold.
+
+2.3. No License to Enterprise Materials. This Community License does NOT grant
+any rights to the Enterprise Materials. Access to Enterprise Materials
+requires a separate enterprise agreement negotiated directly with Iternal.
+Contact sales@iternal.ai for enterprise inquiries.
+
+2.4. Contribution License. By submitting a pull request, patch, issue, or any
+other contribution ("Contribution") to any Iternal repository containing
+Community Materials, You:
+
+  (a) Grant Iternal a perpetual, worldwide, non-exclusive, royalty-free,
+      irrevocable license to use, reproduce, modify, distribute, sublicense,
+      and otherwise exploit Your Contribution in any form, including
+      incorporation into proprietary and commercial products;
+
+  (b) Represent that You are the original author of Your Contribution or have
+      sufficient rights to grant this license;
+
+  (c) Represent that Your Contribution does not infringe any third-party
+      intellectual property rights; and
+
+  (d) Understand that Iternal is under no obligation to accept or incorporate
+      Your Contribution.
+
+2.5. Transferability. You may transfer this license to a third party solely in
+connection with the transfer of the Derivative Work that incorporates the
+Community Materials, provided the transferee agrees to be bound by this
+Community License.
+
+
+3. CONDITIONS OF USE AND DISTRIBUTION
+
+3.1. Attribution. Any distribution of the Community Materials or Derivative
+Works must:
+
+  (a) Include a copy of, or a prominent link to, this Community License;
+
+  (b) Include the following attribution notice in a reasonable location (e.g.,
+      README, model card, about page, documentation):
+
+      "Built with Blockify by Iternal Technologies — https://blockify.ai"
+
+  (c) Clearly identify any modifications You made to the Community Materials.
+
+3.2. No Competing Product. You shall not use the Community Materials,
+Derivative Works, or knowledge obtained from the Community Materials to build,
+train, improve, or operate a Competing Product (as defined in Section 1.3).
+
+3.3. No Misrepresentation. You shall not represent or imply that Your
+Derivative Work is an official Iternal product, or that Iternal endorses Your
+Derivative Work, without Iternal's prior written consent.
+
+3.4. Model Output Freedom. You may use IdeaBlocks and other outputs generated
+by Community Materials freely for any lawful purpose, subject only to the
+Competing Product restriction in Section 3.2 and the Revenue Threshold in
+Section 4.
+
+3.5. No Hosting as a Managed Service. You may not offer the Community
+Materials as a hosted, managed, or "as-a-service" product to third parties
+where the primary value delivered is access to the Blockify distillation
+service, Blockify models, or IdeaBlock generation pipeline itself.
+
+  (a) Incorporating Blockify outputs (IdeaBlocks) into Your own application,
+      product, or service is permitted;
+
+  (b) Using the distillation service internally within Your organization is
+      permitted;
+
+  (c) Offering a commercial service that is primarily a wrapper around the
+      Blockify distillation service or models for third-party use is NOT
+      permitted without an enterprise agreement from Iternal.
+
+
+4. REVENUE THRESHOLD AND ENTERPRISE LICENSING
+
+4.1. Revenue Threshold. If Your annual gross revenue (including all
+Affiliates) exceeds the Revenue Threshold ($1,000,000 USD), You must either:
+
+  (a) Contact Iternal at sales@iternal.ai to negotiate an enterprise license
+      agreement; or
+
+  (b) Cease commercial use of the Community Materials within sixty (60) days
+      of exceeding the Revenue Threshold.
+
+4.2. Self-Certification. You are responsible for monitoring Your own revenue
+and determining when the Revenue Threshold is exceeded. Iternal reserves the
+right to request reasonable verification of revenue status from any commercial
+user of the Community Materials.
+
+4.3. Grace Period. Upon first exceeding the Revenue Threshold, You have a
+grace period of sixty (60) days to either execute an enterprise agreement with
+Iternal or cease commercial use. Use during the grace period does not
+constitute a breach of this Community License.
+
+4.4. Revenue Calculation. Revenue is calculated based on the Licensee's
+consolidated worldwide gross revenue from all sources, not solely revenue
+attributable to use of the Community Materials. For entities that are part of
+a corporate group, the revenue of all Affiliates is included.
+
+4.5. Enterprise Terms. Enterprise license terms, including scope, pricing,
+deployment rights, support levels, and SLAs, are negotiated directly between
+the Customer and Iternal. Enterprise terms are not published and are treated
+as confidential between the parties. Nothing in this Community License
+prescribes or limits the terms of any enterprise agreement.
+
+
+5. INTELLECTUAL PROPERTY
+
+5.1. Ownership. Iternal retains all right, title, and interest in and to the
+Community Materials, including all patents, copyrights, trade secrets,
+trademarks, and other intellectual property rights.
+
+5.2. Patent Notice. The Community Materials may be covered by one or more
+pending or issued patents held by Iternal. This Community License grants a
+limited patent license solely to the extent necessary to exercise the rights
+expressly granted in Section 2. All other patent rights are reserved. This
+limited patent license terminates automatically upon any breach of this
+Community License.
+
+5.3. Your Derivative Works. Subject to Iternal's rights in the underlying
+Community Materials, You own Your Derivative Works. This Community License
+does not transfer ownership of Your original contributions to Iternal, except
+as provided in the Contribution License (Section 2.4).
+
+5.4. Trademark Use. "Blockify," "IdeaBlock," and "AirgapAI" are trademarks
+of Iternal Technologies, Inc. You may use the "Blockify" name solely for the
+purpose of accurate attribution as required by Section 3.1. Any other use of
+Iternal's trademarks requires prior written consent.
+
+
+6. DISCLAIMERS AND LIMITATIONS
+
+6.1. AS-IS. THE COMMUNITY MATERIALS ARE PROVIDED "AS IS" AND "AS AVAILABLE,"
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+NONINFRINGEMENT, OR ACCURACY OF OUTPUTS. ITERNAL DOES NOT WARRANT THAT THE
+COMMUNITY MATERIALS WILL BE ERROR-FREE, UNINTERRUPTED, SECURE, OR FREE OF
+HARMFUL COMPONENTS.
+
+6.2. AI Output Disclaimer. The Community Materials utilize large language
+models that may produce incomplete, inaccurate, biased, or hallucinated
+outputs. You are solely responsible for validating all outputs before any use
+in production, decision-making, safety-critical, or regulated applications.
+Iternal assumes no liability for decisions made based on model outputs.
+
+6.3. Limitation of Liability. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE
+LAW, IN NO EVENT SHALL ITERNAL, ITS AFFILIATES, OFFICERS, DIRECTORS,
+EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA,
+GOODWILL, OR USE, ARISING OUT OF OR RELATED TO THIS COMMUNITY LICENSE OR THE
+COMMUNITY MATERIALS, REGARDLESS OF THE THEORY OF LIABILITY (WHETHER IN
+CONTRACT, TORT, STRICT LIABILITY, OR OTHERWISE). ITERNAL'S TOTAL AGGREGATE
+LIABILITY SHALL NOT EXCEED FIFTY UNITED STATES DOLLARS ($50 USD).
+
+6.4. Third-Party Components. The Community Materials may include or interface
+with third-party open-source components (including FAISS, networkx,
+scikit-learn, FastAPI, and others). Such components are provided under their
+respective licenses, and Iternal makes no warranty regarding them.
+
+
+7. TERMINATION
+
+7.1. Termination for Breach. This Community License terminates automatically
+if You materially breach any of its terms and fail to cure such breach within
+thirty (30) days of becoming aware of it (or of receiving written notice from
+Iternal, whichever is earlier).
+
+7.2. Termination by Iternal. Iternal may terminate this Community License upon
+sixty (60) days' written notice if it determines, in good faith, that Your use
+poses a material risk to Iternal's intellectual property, business, or
+reputation. This provision is a safety valve for extraordinary circumstances
+and is not intended for routine use.
+
+7.3. Voluntary Termination. You may terminate this Community License at any
+time by ceasing all use of the Community Materials and destroying all copies
+in Your possession or control.
+
+7.4. Effect of Termination. Upon termination:
+
+  (a) You must cease all use of the Community Materials and destroy all copies
+      within thirty (30) days;
+
+  (b) Derivative Works that were lawfully distributed to third parties prior
+      to termination may continue to be used by those recipients under the
+      terms of this Community License;
+
+  (c) Data and outputs (IdeaBlocks) You generated during valid use remain
+      Yours.
+
+7.5. Survival. Sections 1 (Definitions), 5 (Intellectual Property),
+6 (Disclaimers and Limitations), 7.4-7.5 (Effect of Termination, Survival),
+and 8 (General) survive any termination of this Community License.
+
+
+8. GENERAL
+
+8.1. Governing Law. This Community License shall be governed by and construed
+in accordance with the laws of the State of Delaware, United States, without
+regard to conflict of law principles.
+
+8.2. Dispute Resolution. Any dispute arising from this Community License shall
+be resolved by binding arbitration under the rules of the American Arbitration
+Association, conducted in Wilmington, Delaware. The prevailing party shall be
+entitled to recover reasonable attorneys' fees.
+
+8.3. Severability. If any provision of this Community License is held to be
+invalid, illegal, or unenforceable, the remaining provisions shall remain in
+full force and effect. The invalid provision shall be modified to the minimum
+extent necessary to make it valid and enforceable.
+
+8.4. Entire Agreement. This Community License constitutes the entire agreement
+between You and Iternal with respect to the Community Materials and supersedes
+all prior or contemporaneous agreements, communications, and proposals on this
+subject.
+
+8.5. Amendments. Iternal may publish revised versions of this Community
+License. Revised terms apply only to Community Materials released after the
+revision date. Community Materials You obtained under a prior version of this
+license remain governed by that version, provided You remain in compliance
+with it.
+
+8.6. No Agency. Nothing in this Community License creates a partnership, joint
+venture, employment, or agency relationship between You and Iternal.
+
+8.7. Contact.
+
+  Enterprise Licensing:  sales@iternal.ai
+  Community Support:     GitHub Issues / support@iternal.ai
+  Website:               https://blockify.ai
+  API Console:           https://console.blockify.ai

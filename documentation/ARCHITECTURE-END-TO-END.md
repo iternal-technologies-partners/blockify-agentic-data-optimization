@@ -1,6 +1,6 @@
-# End-to-End Architecture: Blockify + Claude Code + Clawdbot Integration
+# End-to-End Architecture: Blockify + Claude Code + OpenClaw Integration
 
-**Document Purpose:** Complete technical architecture for engineers integrating Blockify data optimization with Claude Code and Clawdbot for enterprise RAG systems.
+**Document Purpose:** Complete technical architecture for engineers integrating Blockify data optimization with Claude Code and OpenClaw for enterprise RAG systems.
 
 ---
 
@@ -10,7 +10,7 @@
 2. [Data Flow](#data-flow)
 3. [Component Deep Dive](#component-deep-dive)
 4. [Claude Code Integration](#claude-code-integration)
-5. [Clawdbot Integration](#clawdbot-integration)
+5. [OpenClaw Integration](#openclaw-integration)
 6. [Vector Database Setup](#vector-database-setup)
 7. [Knowledge Graph (Optional)](#knowledge-graph-optional)
 8. [Deployment Architecture](#deployment-architecture)
@@ -23,7 +23,7 @@
 ```
 +===========================================================================+
 ||                    ENTERPRISE RAG ARCHITECTURE                          ||
-||                  Blockify + Claude Code + Clawdbot                      ||
+||                  Blockify + Claude Code + OpenClaw                      ||
 +===========================================================================+
 
                            [CONTENT SOURCES]
@@ -97,7 +97,7 @@
 +===========================================================================+
 ||                                                                         ||
 ||  +-------------------+    +-------------------+    +------------------+ ||
-||  |   CLAWDBOT        |    |   CLAUDE CODE     |    |   ENTERPRISE     | ||
+||  |   OPENCLAW        |    |   CLAUDE CODE     |    |   ENTERPRISE     | ||
 ||  |   (Website Chat)  |    |   (Dev Assistant) |    |   APPS           | ||
 ||  +-------------------+    +-------------------+    +------------------+ ||
 ||  | Customer queries  |    | Codebase context  |    | Internal tools   | ||
@@ -445,13 +445,13 @@ See [CLAUDE-CODE-BLOCKIFY-SKILL.md](./CLAUDE-CODE-BLOCKIFY-SKILL.md) for the com
 
 ---
 
-## Clawdbot Integration
+## OpenClaw Integration
 
 ### Architecture
 
 ```
 +-----------------------------------------------------------------------+
-|                      CLAWDBOT RAG INTEGRATION                         |
+|                      OPENCLAW RAG INTEGRATION                         |
 +-----------------------------------------------------------------------+
 
 [Website Visitor]
@@ -509,7 +509,7 @@ See [CLAUDE-CODE-BLOCKIFY-SKILL.md](./CLAUDE-CODE-BLOCKIFY-SKILL.md) for the com
 ### Implementation Code
 
 ```typescript
-// src/services/clawdbot-rag.ts
+// src/services/openclaw-rag.ts
 
 interface IdeaBlock {
   name: string;

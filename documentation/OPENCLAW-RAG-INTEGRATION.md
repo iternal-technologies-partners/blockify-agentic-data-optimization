@@ -1,12 +1,12 @@
-# Clawdbot RAG Integration with Blockify
+# OpenClaw RAG Integration with Blockify
 
-**Document Purpose:** Technical guide for integrating Blockify-processed knowledge bases into the Clawdbot website chatbot.
+**Document Purpose:** Technical guide for integrating Blockify-processed knowledge bases into the OpenClaw website chatbot.
 
 ---
 
 ## Table of Contents
 
-1. [Current Clawdbot Architecture](#current-clawdbot-architecture)
+1. [Current OpenClaw Architecture](#current-openclaw-architecture)
 2. [RAG Enhancement Plan](#rag-enhancement-plan)
 3. [Implementation Guide](#implementation-guide)
 4. [Knowledge Base Structure](#knowledge-base-structure)
@@ -16,7 +16,7 @@
 
 ---
 
-## Current Clawdbot Architecture
+## Current OpenClaw Architecture
 
 ### Existing Implementation
 
@@ -24,7 +24,7 @@ Based on `src/components/chatbot/chatbot.ts`:
 
 ```
 +-------------------------------------------------------+
-|                  CURRENT CLAWDBOT                     |
+|                  CURRENT OPENCLAW                     |
 +-------------------------------------------------------+
 
 [User Message]
@@ -62,7 +62,7 @@ Based on `src/components/chatbot/chatbot.ts`:
 
 ```
 +-------------------------------------------------------+
-|              ENHANCED CLAWDBOT WITH RAG               |
+|              ENHANCED OPENCLAW WITH RAG               |
 +-------------------------------------------------------+
 
 [User Message]
@@ -131,16 +131,16 @@ Based on `src/components/chatbot/chatbot.ts`:
 
 ```bash
 # Create content collection
-mkdir -p /data/clawdbot-kb/source
+mkdir -p /data/openclaw-kb/source
 
 # Collect product documentation
-cp docs/products/*.md /data/clawdbot-kb/source/
+cp docs/products/*.md /data/openclaw-kb/source/
 
 # Collect FAQs
-cp docs/faq/*.md /data/clawdbot-kb/source/
+cp docs/faq/*.md /data/openclaw-kb/source/
 
 # Collect case studies
-cp docs/case-studies/*.md /data/clawdbot-kb/source/
+cp docs/case-studies/*.md /data/openclaw-kb/source/
 ```
 
 #### Step 2: Process with Blockify
@@ -153,8 +153,8 @@ import os
 import glob
 from blockify_pipeline import process_document
 
-source_dir = '/data/clawdbot-kb/source'
-output_dir = '/data/clawdbot-kb/ideablocks'
+source_dir = '/data/openclaw-kb/source'
+output_dir = '/data/openclaw-kb/ideablocks'
 
 os.makedirs(output_dir, exist_ok=True)
 
@@ -177,7 +177,7 @@ import glob
 
 # Merge all IdeaBlocks
 all_blocks = []
-for filepath in glob.glob('/data/clawdbot-kb/ideablocks/*.json'):
+for filepath in glob.glob('/data/openclaw-kb/ideablocks/*.json'):
     with open(filepath) as f:
         blocks = json.load(f)
         # Add source file metadata
@@ -186,7 +186,7 @@ for filepath in glob.glob('/data/clawdbot-kb/ideablocks/*.json'):
         all_blocks.extend(blocks)
 
 # Save merged knowledge base
-with open('/data/clawdbot-kb/knowledge_base.json', 'w') as f:
+with open('/data/openclaw-kb/knowledge_base.json', 'w') as f:
     json.dump(all_blocks, f, indent=2)
 
 print(f"Created knowledge base with {len(all_blocks)} IdeaBlocks")
@@ -238,7 +238,7 @@ async function indexIdeaBlocks(env: Env) {
 ### Phase 3: Retrieval Service
 
 ```typescript
-// src/services/clawdbot-retrieval.ts
+// src/services/openclaw-retrieval.ts
 
 interface IdeaBlock {
   name: string;
@@ -361,7 +361,7 @@ async function bm25Search(query: string, env: Env): Promise<Array<{id: string}>>
 ```typescript
 // src/components/chatbot/chatbot-rag.ts
 
-import { retrieveContext } from '../../services/clawdbot-retrieval';
+import { retrieveContext } from '../../services/openclaw-retrieval';
 
 interface Message {
   role: 'user' | 'assistant' | 'system';
@@ -402,7 +402,7 @@ function buildSystemPrompt(ideablocks: IdeaBlock[]): string {
     `[${ib.name}]\nQ: ${ib.question}\nA: ${ib.answer}`
   ).join('\n\n');
 
-  return `You are Clawdbot, the AI assistant for Iternal Technologies.
+  return `You are OpenClaw, the AI assistant for Iternal Technologies.
 
 ## Your Knowledge Base
 
@@ -460,7 +460,7 @@ async function callLLM(messages: Message[], env: Env): Promise<string> {
 ### Recommended Organization
 
 ```
-/data/clawdbot-kb/
+/data/openclaw-kb/
 ├── source/                    # Raw source documents
 │   ├── products/
 │   │   ├── airgapai.md
@@ -501,7 +501,7 @@ async function callLLM(messages: Message[], env: Env): Promise<string> {
 
 ## Code Examples
 
-### Full Clawdbot RAG Integration
+### Full OpenClaw RAG Integration
 
 ```typescript
 // src/components/chatbot/index.ts - Main export
@@ -543,7 +543,7 @@ export async function handleChatRequest(request: Request, env: Env) {
 
 [[vectorize]]
 binding = "VECTORIZE"
-index_name = "clawdbot-ideablocks"
+index_name = "openclaw-ideablocks"
 
 [[kv_namespaces]]
 binding = "KV_IDEABLOCKS"

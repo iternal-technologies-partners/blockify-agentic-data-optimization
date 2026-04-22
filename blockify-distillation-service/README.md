@@ -162,7 +162,7 @@ helm install distill ./helm/blockify-distillation \
 
 ## License
 
-Blockify EULA - See [LICENSE](../LICENSE) for details.
+Blockify Community License - See [LICENSE](../LICENSE) for details. Free for developers and companies under $1M annual revenue. Enterprise licensing: [sales@iternal.ai](mailto:sales@iternal.ai).
 
 ## Contributing
 

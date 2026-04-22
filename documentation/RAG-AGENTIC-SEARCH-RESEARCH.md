@@ -1,7 +1,7 @@
 # RAG and Agentic Data Search Research Summary
 
 **Date:** 2026-01-25
-**Purpose:** Comprehensive research on modern RAG architectures, agentic search patterns, and integration recommendations for Blockify, Claude Code, and Clawdbot (AI chatbot)
+**Purpose:** Comprehensive research on modern RAG architectures, agentic search patterns, and integration recommendations for Blockify, Claude Code, and OpenClaw (AI chatbot)
 
 ---
 
@@ -734,7 +734,7 @@ API:
 - get_related_files(file_path)
 ```
 
-### 3. Clawdbot Integration (Claude Chatbot)
+### 3. OpenClaw Integration (Claude Chatbot)
 
 **Current Implementation (from chatbot.ts):**
 - Grok LLM powered
@@ -747,7 +747,7 @@ API:
 
 ```
 +------------------------------------------------------------------+
-|              CLAWDBOT + RAG ARCHITECTURE                         |
+|              OPENCLAW + RAG ARCHITECTURE                         |
 +------------------------------------------------------------------+
 
                       [User Message]
@@ -848,11 +848,11 @@ Week 3-4: Content Processing
 - [ ] Generate initial embeddings
 ```
 
-### Phase 2: Clawdbot RAG (Weeks 5-8)
+### Phase 2: OpenClaw RAG (Weeks 5-8)
 
 ```
 +------------------------------------------------------------------+
-|                   PHASE 2: CLAWDBOT RAG                          |
+|                   PHASE 2: OPENCLAW RAG                          |
 +------------------------------------------------------------------+
 
 Week 5-6: Basic RAG

@@ -7,7 +7,7 @@ name = "blockify-distillation-service"
 version = "0.1.0"
 description = "Deduplication and merging service for IdeaBlocks"
 readme = "README.md"
-license = {text = "Apache-2.0"}
+license = {text = "Blockify Community License 1.0"}
 requires-python = ">=3.10"
 authors = [
     {name = "Iternal Technologies", email = "dev@iternal.ai"}
@@ -15,7 +15,7 @@ authors = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: Other/Proprietary License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
