@@ -5,7 +5,7 @@
 -->
 
 <p align="center">
-  <img alt="Blockify — Agentic Data Optimization for Enterprise AI" src="assets/images/light/01-hero-banner.png" width="100%">
+  <img alt="Blockify — Agentic Data Optimization for Enterprise AI" src="assets/images/light/1.jpg" width="100%">
 </p>
 
 <h3 align="center">Transform messy enterprise content into compact, validated knowledge units optimized for AI</h3>
@@ -57,7 +57,7 @@ Traditional Retrieval-Augmented Generation (RAG) pipelines split documents into 
 ## How It Works
 
 <p align="center">
-  <img alt="Blockify end-to-end architecture" src="assets/images/light/02-architecture.png" width="900">
+  <img alt="Blockify end-to-end architecture" src="assets/images/light/2.jpg" width="900">
 </p>
 
 1. **Ingest** — Documents (SharePoint, Confluence, Git, local docs) are parsed and transformed into structured IdeaBlocks via the Blockify API
@@ -209,7 +209,7 @@ Supports Prometheus ServiceMonitor, PVC for SQLite persistence, Ingress, and Sec
 ## Enterprise Edition
 
 <p align="center">
-  <img alt="Blockify Enterprise Edition — productionized containers with advanced capabilities" src="assets/images/light/04-enterprise-edition.png" width="900">
+  <img alt="Blockify Enterprise Edition — productionized containers with advanced capabilities" src="assets/images/light/4.jpg" width="900">
 </p>
 
 > [!IMPORTANT]
@@ -294,7 +294,7 @@ Full schema in [IDEABLOCK-STRUCTURE.md](./documentation/IDEABLOCK-STRUCTURE.md).
 ## Performance
 
 <p align="center">
-  <img alt="Blockify performance metrics: 78X, 2.29X, 29.93X, 3.09X, 40X" src="assets/images/light/03-performance-metrics.png" width="900">
+  <img alt="Blockify performance metrics: 78X, 2.29X, 29.93X, 3.09X, 40X" src="assets/images/light/3.jpg" width="900">
 </p>
 
 | Metric | Improvement | What It Means |
